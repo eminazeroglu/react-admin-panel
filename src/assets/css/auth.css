@@ -1,0 +1,12 @@
+.auth {
+    @apply h-full flex
+}
+
+.auth-aside {
+    @apply lg:w-[480px] bg-white p-16 dark:bg-gray-900 flex flex-col h-full justify-between
+}
+
+.auth-main {
+    @apply hidden lg:flex h-full flex-1
+}
+

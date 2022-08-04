@@ -1,0 +1,57 @@
+.custom-tab .ant-tabs-nav {
+    @apply bg-white px-3 border border-gray-200 rounded
+}
+
+.custom-tab--no-border .ant-tabs-nav {
+    @apply border-none px-0
+}
+
+.custom-tab.ant-tabs-left .ant-tabs-nav  {
+    @apply !px-0 h-[fit-content]
+}
+
+.custom-tab.ant-tabs-left > .ant-tabs-content-holder,
+.custom-tab.ant-tabs-left > div > .ant-tabs-content-holder {
+    @apply border-l-0
+}
+
+.custom-tab.ant-tabs-left .ant-tabs-tab {
+    border-bottom: 1px solid transparent !important;
+    @apply px-3 !border-b !border-gray-200 py-4
+}
+
+.custom-tab.ant-tabs-left .ant-tabs-tab-btn {
+    @apply w-full
+}
+
+.custom-tab .ant-tabs-tab-btn {
+    @apply font-bold
+}
+.custom-tab .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    @apply text-primary
+}
+
+.custom-tab .ant-tabs-ink-bar {
+    @apply bg-primary
+}
+
+.custom-tab .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab, .ant-tabs-right > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab,
+.custom-tab .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab, .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
+    @apply m-0
+}
+
+.custom-tab .ant-tabs-nav-list {
+    @apply min-w-[180px]
+}
+
+.custom-tab.custom-tab--column .ant-tabs-nav-list {
+    @apply w-full
+}
+
+.custom-tab.custom-tab--column .ant-tabs-tab {
+    @apply flex-1 text-center
+}
+
+.custom-tab.custom-tab--column .ant-tabs-tab .ant-tabs-tab-btn {
+    @apply w-full
+}

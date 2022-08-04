@@ -1,0 +1,23 @@
+.dropdown {
+    @apply bg-white drop-shadow-lg flex flex-col rounded overflow-hidden dark:bg-gray-800 dark:border dark:border-gray-700
+}
+
+.dropdown-head {
+    @apply p-3 border-b border-gray-100 dark:border-gray-700
+}
+
+.dropdown-body {
+    @apply flex flex-col
+}
+
+.dropdown-items {
+    @apply divide-y flex flex-col dark:divide-gray-700
+}
+
+.dropdown-item {
+    @apply p-3 flex items-center w-full text-left hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700
+}
+
+.ant-dropdown:before {
+    @apply !bg-red-500
+}

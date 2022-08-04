@@ -1,0 +1,26 @@
+.dark-bg-primary {
+    @apply dark:!bg-gray-900
+}
+
+.dark-bg-secondary {
+    @apply dark:!bg-gray-800
+}
+
+.dark-bg-gray {
+    @apply dark:!bg-gray-700
+}
+
+.dark-border {
+    @apply dark:!border-gray-700
+}
+.dark-text-primary {
+    @apply dark:!text-white
+}
+
+.dark-text-secondary {
+    @apply dark:!text-gray-300
+}
+
+.dark-link {
+    @apply dark:!text-blue-400
+}

@@ -1,0 +1,286 @@
+.form-group {
+    @apply flex flex-col space-y-1 w-full
+}
+
+.form-group--error .form-element {
+    @apply !border-red-500 dark:!border-red-400
+}
+
+.form-group--addon .form-element
+{
+    @apply px-0
+}
+
+.form-group--addon-prefix .form-element {
+    @apply pr-0
+}
+
+.form-group--addon-suffix .form-element {
+    @apply pl-0
+}
+
+.form-group--disabled .form-element {
+    @apply !pointer-events-none bg-gray-100 text-gray-400 dark:bg-gray-700 dark:border-gray-600 opacity-50
+}
+
+.form-group--disabled .form-element {
+    @apply !cursor-not-allowed
+}
+
+.form-group .form-element {
+    @apply !select-none
+}
+
+.form-label {
+    @apply font-semibold dark:text-gray-300
+}
+
+.form-element {
+    @apply h-10 flex items-center rounded border border-[#d9d9d9] bg-white overflow-hidden dark:bg-gray-800 dark:border-gray-700 dark:text-white
+}
+
+.form-group--no-border .form-element {
+    overflow: initial;
+    @apply border-none bg-transparent
+}
+
+.form-element * {
+    @apply !transition-none
+}
+
+.form-group .StripeElement {
+    @apply !px-3
+}
+
+.form-prefix, .form-suffix {
+    @apply min-w-[40px] px-2 text-center shrink-0 h-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700
+}
+
+.ant-input-number-handler-wrap {
+    @apply dark:bg-gray-700
+}
+
+.ant-input-number-handler svg {
+    @apply dark:text-gray-300
+}
+
+.form-prefix {
+    @apply border-l border-gray-200 dark:border-gray-700
+}
+
+.form-suffix {
+    @apply border-r border-gray-200 dark:border-gray-700
+}
+
+.form-error {
+    @apply text-red-500 text-sm dark:text-red-400
+}
+
+[class^=ant-]:not('dropdown'), [class*=" ant-"]:not('dropdown') {
+    @apply
+    focus:!outline-none focus:!shadow-none focus:!border-none
+    active:!outline-none active:!shadow-none active:!border-none
+}
+
+.form-group .ant-input,
+.form-group .ant-select-selector,
+.form-group .ant-input-number,
+.form-group .ant-input-number-input,
+.form-group .ant-input-password,
+.form-group .ant-input-affix-wrapper,
+.form-group .ant-picker {
+    @apply !border-none !outline-none !shadow-none h-full flex items-center bg-transparent dark:text-white
+}
+
+.form-group .ant-input-number-input-wrap {
+    @apply w-full
+}
+
+.form-group .ant-select-selector {
+    @apply dark:bg-[transparent]
+}
+
+.form-group .ant-select-arrow {
+    @apply dark:text-gray-300
+}
+
+.ant-select-dropdown {
+    @apply dark:bg-gray-800 dark:text-white dark:border dark:border-gray-700
+}
+
+.ant-input-password-icon.anticon {
+    @apply dark:text-gray-300
+}
+
+.ant-radio-wrapper {
+    @apply dark:text-gray-300
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled),
+.ant-select-item-option-active:not(.ant-select-item-option-disabled)
+{
+    @apply dark:bg-gray-700
+}
+
+.ant-select-dropdown .ant-select-item {
+    @apply dark:text-gray-300
+}
+
+.form-group .ant-switch {
+    @apply !border-none !outline-none !shadow-none
+}
+
+.ant-checkbox-inner, .ant-radio-inner {
+    @apply dark:bg-gray-700 dark:border-gray-600
+}
+
+.ant-checkbox-checked .ant-checkbox-inner::after {
+    @apply dark:border-secondary
+}
+
+.ant-radio-input:focus + .ant-radio-inner{
+    @apply !outline-none !shadow-none
+}
+
+.ant-radio-inner::after {
+    @apply dark:bg-secondary
+}
+
+.ant-input-clear-icon {
+    vertical-align: 0;
+    position: relative;
+    top: -1px;
+    @apply dark:text-gray-300
+}
+
+.ant-checkbox-wrapper  {
+    @apply dark:!text-gray-300
+}
+
+.ant-checkbox-wrapper-disabled {
+    @apply dark:opacity-50
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner {
+    @apply dark:!border-gray-600
+}
+
+.ant-checkbox-wrapper span {
+    @apply dark:text-gray-300
+}
+
+.ant-switch {
+    @apply dark:!bg-gray-700 dark:!bg-none
+}
+.ant-switch.ant-switch-checked {
+    @apply dark:!bg-secondary dark:!text-gray-800
+}
+.ant-switch.ant-switch-checked .ant-switch-inner {
+    @apply dark:!text-gray-800
+}
+
+.form-group .ant-picker-active-bar {
+    @apply hidden
+}
+
+.form-group--search-hidden .ant-input-group-addon {
+    @apply hidden
+}
+
+
+.form-group .ant-input-password {
+    @apply !py-0
+}
+
+.form-group .ant-input-password .ant-input {
+    @apply !py-1
+}
+
+.form-group .ant-select,
+.form-group .ant-picker
+{
+    @apply w-full
+}
+
+.form-group .ant-input-number-handler {
+    @apply !border-none flex items-center justify-center
+}
+
+.form-group .ant-switch {
+    @apply bg-primary/50
+}
+
+.form-group .ant-switch.ant-switch-checked {
+    @apply bg-primary
+}
+
+.form-group .ant-radio-group {
+    @apply inline-flex
+}
+.form-group .ant-radio-button-wrapper {
+    @apply h-10 leading-normal flex-1 shrink-0
+}
+.form-group .ant-radio-button-wrapper span:not(.ant-radio-button) {
+    @apply flex items-center h-10
+}
+
+
+.form-group .ant-upload-list-item {
+    @apply m-0 h-auto border-t border-gray-200 dark:text-gray-300 dark:border-gray-700
+}
+
+.form-group .ant-upload-list-item:hover  .ant-upload-list-item-info{
+    @apply dark:hover:bg-gray-700
+}
+
+.form-group .ant-upload-list-item-info {
+    @apply py-1 px-3
+}
+
+.form-group .ant-upload-text-icon {
+    @apply flex items-center
+}
+
+.form-group .ant-upload-select {
+    @apply w-full
+}
+
+.form-group .react-tel-input {
+    font-family: 'Nunito', sans-serif;
+}
+
+.form-group .react-tel-input .form-control {
+    @apply border-none w-full
+}
+
+.form-group .react-tel-input .flag-dropdown {
+    @apply border-none !bg-transparent
+}
+
+.form-group .react-tel-input .country-list {
+    @apply mb-10
+}
+
+.form-group .react-tel-input .country-list .search {
+    @apply w-full p-2 border-b border-b-gray-200
+}
+.form-group .react-tel-input .country-list .search-emoji {
+    @apply hidden
+}
+
+.form-group .react-tel-input .country-list .search-box {
+    @apply border-[#d9d9d9] w-full ml-0 text-sm h-10
+}
+
+.stripe-form .stripe-form-input .form-element {
+    @apply dark:bg-white
+}
+
+
+.form-upload-button {
+    @apply form-element border-none !h-[38px] w-full px-3 space-x-2
+}
+
+.form-hr {
+    @apply bg-gray-200 h-10 flex items-center px-3 dark:bg-gray-600
+}

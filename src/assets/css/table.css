@@ -1,0 +1,39 @@
+.ui-table .ant-pagination-options {
+    @apply hidden
+}
+
+.ui-table .ant-table-thead > tr > th {
+    @apply font-bold
+}
+
+.ui-table .ant-table {
+    @apply dark:bg-gray-800 dark:text-gray-300
+}
+
+.ui-table .ant-table-tbody > tr > td {
+    @apply dark:!border-gray-700 text-xs
+}
+
+.ui-table .ant-table-thead > tr > th {
+    @apply dark:bg-gray-900 dark:!border-gray-700 dark:text-gray-300 text-xs
+}
+
+.ui-table .ant-checkbox-indeterminate .ant-checkbox-inner::after {
+    @apply dark:bg-white
+}
+
+.ui-table .ant-table.ant-table-bordered > .ant-table-container,
+.ui-table .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table,
+.ui-table .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table {
+    @apply dark:!border-gray-700
+}
+
+.ui-table .ant-table-tbody > tr.ant-table-row:hover > td,
+.ui-table .ant-table-tbody > tr > td.ant-table-cell-row-hover,
+.ui-table .ant-table-tbody > tr.ant-table-row-selected > td {
+    @apply dark:bg-gray-700 dark:!border-gray-600
+}
+
+.ui-table td.ant-table-column-sort {
+    @apply dark:!bg-gray-800
+}

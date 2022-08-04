@@ -1,0 +1,11 @@
+.ant-modal-footer .ant-btn-primary {
+    @apply bg-green-500 border-none
+}
+
+.ant-modal-content {
+    @apply dark:bg-gray-900
+}
+
+.ant-modal-header {
+    @apply dark:bg-gray-900 dark:border-gray-800
+}

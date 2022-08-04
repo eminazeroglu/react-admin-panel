@@ -1,0 +1,106 @@
+.swal2-shown.swal2-height-auto {
+    height: 100% !important;
+}
+
+.swal2-popup {
+    width: 20rem !important;
+    @apply dark:bg-gray-800 dark:text-white
+}
+
+.swal2-icon {
+    margin-top: 0 !important;
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+}
+
+.swal2-icon .swal2-icon-content {
+    font-size: 2.1rem !important;
+}
+
+.swal2-shown {
+    @apply overflow-hidden
+}
+
+.swal2-container *, .swal2-container *:hover, .swal2-container *:active {
+    @apply shadow-none outline-none
+}
+
+.swal2-container .swal2-popup {
+    @apply p-4 rounded-lg
+}
+
+.swal2-container .swal2-title {
+    margin-top: .5rem !important;
+    @apply text-lg text-black p-0 mb-3 mt-4 leading-normal text-center dark:text-white
+}
+
+.swal2-container .swal2-html-container {
+    margin-top: 0.5rem !important;
+    @apply text-sm text-gray-600 text-center p-0 mb-4 leading-normal dark:text-gray-300
+}
+
+.swal2-popup.content-left .swal2-html-container {
+    @apply !text-left
+}
+
+.swal2-container .swal2-actions {
+    padding-right: -15px;
+    margin-left: -5px;
+    @apply justify-between mt-0 w-full
+}
+
+.swal2-container .swal2-styled {
+    flex: 1;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    padding: 0 17px;
+}
+
+.swal2-container .swal2-styled:active,
+.swal2-container .swal2-styled:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.swal2-container .swal2-styled i {
+    margin-right: 7px;
+    position: relative;
+    top: -1px;
+}
+
+.swal2-container .swal2-styled.swal2-cancel {
+    margin-right: 0;
+}
+
+.swal2-container .swal2-styled .icon-cancel {
+    font-size: 9px;
+}
+
+.swal2-container .swal2-styled .icon-check {
+    font-size: 14px;
+    position: relative;
+    top: 1px;
+}
+
+.swal2-close {
+    @apply absolute top-0 right-0 outline-none shadow-none
+}
+
+.swal2-input {
+    @apply !m-0 !mb-5
+}
+
+.swal2-popup--inline-button .swal2-actions {
+    @apply justify-center space-x-5
+}
+
+.swal2-popup--inline-button .swal2-styled {
+    @apply flex-none px-10
+}
+
+.swal2-styled.swal2-confirm {
+    @apply !bg-primary dark:!bg-secondary dark:!text-primary
+}
