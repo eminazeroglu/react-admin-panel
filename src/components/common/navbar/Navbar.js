@@ -11,10 +11,12 @@ function Navbar(props) {
             menu.children = menuMap(menu.children);
         }
 
+        menu.access = true;
+
         return menu;
     })
 
-    const customMenus = menuMap(menus)
+    const customMenus = menuMap(menus).filter(i => i.access)
 
     return (
         <>
