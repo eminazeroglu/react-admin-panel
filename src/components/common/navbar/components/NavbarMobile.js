@@ -37,7 +37,7 @@ function NavbarMobile({menus, pathname}) {
 
     return (
         <nav
-            className={`lg:hidden fixed top-0 ${mobileMenuOpen ? 'left-0' : '-left-full'} right-0 transition-all duration-300 bottom-0 w-full z-[999] bg-gray-900/90`}>
+            className={`lg:hidden fixed top-0 ${mobileMenuOpen ? 'left-0' : '-left-full'} right-0 transition-all duration-300 bottom-0 w-full z-[999] dark:bg-gray-900/90 bg-gray-900/60`}>
             <div className="w-[calc(100%_-_70px)] h-full bg-white dark:bg-gray-800 overflow-hidden">
                 <div
                     className="flex shrink-0 items-center justify-between py-2 px-4 border-b border-gray-200 dark-border">

@@ -3,7 +3,7 @@
 }
 
 .auth-aside {
-    @apply lg:w-[480px] bg-white p-16 dark:bg-gray-900 flex flex-col h-full justify-between
+    @apply lg:w-[480px] bg-white lg:p-16 p-5 dark:bg-gray-900 flex flex-col h-full justify-between
 }
 
 .auth-main {

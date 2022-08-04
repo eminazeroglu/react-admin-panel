@@ -41,7 +41,7 @@ function NavbarBlock({menus, pathname}) {
                 return (
                     <li key={menuIndex} className="relative group">
                         {!subMenus.length && (
-                            <NavLink to={route(menu.route)} className={`h-10 flex items-center whitespace-nowrap px-3 text-white hover:text-secondary ${pathname === route(menu.route) ? 'text-secondary' : ''}`}>
+                            <NavLink to={route(menu.route)} className={`h-10 flex items-center whitespace-nowrap px-3 dark:text-white hover:text-secondary ${pathname === route(menu.route) ? 'text-secondary' : ''}`}>
                                 <div className="space-x-2 flex items-center">
                                     <span>{menu.icon}</span>
                                     <span>{translate(menu.title)}</span>
@@ -52,7 +52,7 @@ function NavbarBlock({menus, pathname}) {
                             <>
                                 <button
                                     onClick={(e) => isMobile ? handleMenu(e) : false}
-                                    className="h-10 flex items-center whitespace-nowrap space-x-3 px-3 text-white hover:text-secondary">
+                                    className="h-10 flex items-center whitespace-nowrap space-x-3 px-3 dark:text-white hover:text-secondary">
                                     <div className="space-x-2 flex items-center">
                                         <span>{menu.icon}</span>
                                         <span>{translate(menu.title)}</span>
