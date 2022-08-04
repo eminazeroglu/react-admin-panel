@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
 import {useAppState} from "stores/module/app.store";
 import {serviceMobileMenuOpenApp} from "services/app.service";
 import {NavLink} from "react-router-dom";
@@ -9,25 +9,8 @@ import NavbarBlock from "components/common/navbar/components/NavbarBlock";
 function NavbarMobile({menus, pathname}) {
 
     const {theme, mobileMenuOpen, photos} = useAppState();
-    const menuRef = useRef();
 
     const logo = photos[`admin_logo_${theme}`]
-
-    const handleMenu = (e) => {
-        const obj = e.target.closest('button') ? e.target.closest('button') : e.target;
-        const parent = obj.closest('li.group');
-        const menus = document.querySelectorAll('.sub-menu')
-        const menu = parent.querySelector('.sub-menu');
-
-        menus.forEach(i => {
-            i.classList.add('h-0');
-            i.classList.remove('h-auto');
-
-        })
-
-        menu.classList.add('h-auto')
-        menu.classList.remove('h-0')
-    }
 
     useEffect(() => {
         if (mobileMenuOpen)
