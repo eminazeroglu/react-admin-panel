@@ -41,7 +41,15 @@ export default [
         title: translateKey + 'SettingPermissions',
         icon: <FiKey/>,
         route: 'app.permission',
-        permission: 'accept'
+        permission: 'accept',
+        children: [
+            {
+                title: translateKey + 'SettingPermissions',
+                icon: <FiKey/>,
+                route: 'app.permission',
+                permission: 'accept'
+            },
+        ]
     },
     {
         title: translateKey + 'Setting',

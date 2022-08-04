@@ -2,6 +2,7 @@ import React from 'react';
 import NavbarDesktop from "components/common/navbar/components/NavbarDesktop";
 import menus from "router/menus";
 import {useLocation} from "react-router-dom";
+import NavbarMobile from "components/common/navbar/components/NavbarMobile";
 
 function Navbar(props) {
     const {pathname} = useLocation();
@@ -21,6 +22,7 @@ function Navbar(props) {
     return (
         <>
             <NavbarDesktop menus={customMenus} pathname={pathname}/>
+            <NavbarMobile menus={customMenus} pathname={pathname}/>
         </>
     );
 }
