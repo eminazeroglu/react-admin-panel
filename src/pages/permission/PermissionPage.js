@@ -1,10 +1,11 @@
 import React from 'react';
+import {Page} from "components/ui";
 
 function PermissionPage(props) {
     return (
-        <div>
+        <Page>
             Permission Page
-        </div>
+        </Page>
     );
 }
 

@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {NavLink} from "react-router-dom";
-import {useAppState} from "stores/module/app.store";
+import {useAppState} from "store/module/app.store";
 import {route} from "utils/helpers";
 import HeaderClock from "components/common/header/components/HeaderClock";
 import HeaderSetting from "components/common/header/components/HeaderSetting";
 import HeaderUserInfo from "components/common/header/components/HeaderUserInfo";
 import HeaderThemeMode from "components/common/header/components/HeaderThemeMode";
-import {serviceMobileMenuOpenApp} from "services/app.service";
+import {serviceAppMobileMenuOpen} from "services/app.service";
 import {FiMenu} from "@react-icons/all-files/fi/FiMenu";
 
 function Header(props) {
@@ -36,7 +36,7 @@ function Header(props) {
 
             <div className="lg:hidden p-2 border-b flex items-center justify-between border-gray-200 dark-border">
                 <div className="flex items-center space-x-3">
-                    <button onClick={() => serviceMobileMenuOpenApp(true)} className="w-10 h-10 flex items-center justify-center text-2xl">
+                    <button onClick={() => serviceAppMobileMenuOpen(true)} className="w-10 h-10 flex items-center justify-center text-2xl">
                         <FiMenu/>
                     </button>
                     <div className="flex items-center">

@@ -22,10 +22,10 @@ export default function Table({
 
     const [tableColumns, setTableColumns] = useState();
     const [currentPage, setCurrentPage] = useState(1);
-    const tableDataInfo = translate('datatable.pagination-info')
-        .replace('_TOTAL_', new Intl.NumberFormat().format(total))
-        .replace('_START_', (tableQuery.start + 1))
-        .replace('_END_', tableQuery.length);
+    const tableDataInfo = translate('datatable.PageShow')
+        .replace('{count}', new Intl.NumberFormat().format(total))
+        .replace('{from}', (tableQuery.start + 1))
+        .replace('{to}', (parseFloat(tableQuery.length) + parseFloat(tableQuery.start)));
 
     const handleTableChange = (pagination, filters, sorter) => {
         const columnIndex = columns.findIndex(i => i.dataIndex === sorter.field);
@@ -93,14 +93,14 @@ export default function Table({
             <div
                 className="flex flex-col lg:flex-row justify-between lg:items-center dark-text-secondary space-y-2 lg:space-y-0">
                 <div className="flex whitespace-nowrap items-center space-x-1 font-semibold">
-                    <span>{translate('datatable.length-box-before')}</span>
+                    <span>{translate('datatable.LengthMenu1')}</span>
                     <select className="select-box !w-auto" value={tableQuery.length}
                             onChange={e => handleChangeLimit(e.target.value)}>
                         {limitPages.length && limitPages.map((i, index) => (
                             <option value={i} key={index}>{i}</option>
                         ))}
                     </select>
-                    <span>{translate('datatable.length-box-after')}</span>
+                    <span>{translate('datatable.LengthMenu2')}</span>
                 </div>
                 <div>
                     {total > 0 && (

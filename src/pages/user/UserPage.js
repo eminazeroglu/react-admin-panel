@@ -1,10 +1,11 @@
 import React from 'react';
+import {Page} from "components/ui";
 
 function UserPage(props) {
     return (
-        <div>
+        <Page>
             User Page
-        </div>
+        </Page>
     );
 }
 

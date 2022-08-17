@@ -4,7 +4,7 @@ import {Button, FormGroup} from "components/ui";
 import {FormInput, FormPassword} from "components/ui/form";
 import {Col, Row} from "antd";
 import {NavLink} from "react-router-dom";
-import {serviceDispatchLoginAuth} from "services/auth.service";
+import {serviceAuthLoginDispatch} from "services/auth.service";
 
 function LoginPage(props) {
 
@@ -15,7 +15,7 @@ function LoginPage(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await serviceDispatchLoginAuth(form);
+        await serviceAuthLoginDispatch(form);
     }
 
     return (

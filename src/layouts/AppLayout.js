@@ -6,12 +6,16 @@ import Navbar from "components/common/navbar/Navbar";
 
 function AppLayout(props) {
     return (
-        <>
+        <div className="h-full">
             <Header/>
             <Navbar/>
-            <Outlet/>
+            <div className="lg:h-[calc(100%_-_106px)] h-full overflow-y-auto pb-20">
+                <div className="container mx-auto">
+                    <Outlet/>
+                </div>
+            </div>
             <Footer/>
-        </>
+        </div>
     );
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {translate} from "utils/helpers";
 import {Dropdown} from "antd";
-import {useAuthState} from "stores/module/auth.store";
+import {useAuthState} from "store/module/auth.store";
 import {CgProfile} from "@react-icons/all-files/cg/CgProfile";
 import {CgLock} from "@react-icons/all-files/cg/CgLock";
 import {CgLogOut} from "@react-icons/all-files/cg/CgLogOut";
@@ -30,13 +30,6 @@ function HeaderUserInfo(props) {
 
     const menus = (
         <div className="dropdown">
-            <div className="dropdown-head">
-                <button
-                    className="font-bold text-mute select-none dark:!text-secondary inline-flex items-center space-x-1 cursor-pointer">
-                    <span className="copyText">{user?.fullname}</span>
-                    <i className="icon-copy ml-1"/>
-                </button>
-            </div>
             <div className="dropdown-body">
                 <ul className="dropdown-items">
                     {userMenus && userMenus.map((menu, index) => (

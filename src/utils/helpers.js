@@ -1,4 +1,4 @@
-import stores from 'stores'
+import stores from 'store'
 import {notification as AntdNotification} from "antd";
 import Swal from "sweetalert2";
 import routers from "router/routers";
@@ -159,10 +159,10 @@ export const dialog = (params = {}) => {
     const icon = params.icon || 'info';
     const iconColor = params.iconColor || '';
     const iconHtml = params.iconHtml || '';
-    const confirmButtonText = params.buttonYesText || translate('button.yes');
+    const confirmButtonText = params.buttonYesText || translate('button.Yes');
     const cancelButtonColor = params.buttonNoColor || '#b91c1c';
     const denyButtonColor = params.buttonDenyColor || '#888';
-    const cancelButtonText = params.buttonNoText || translate('button.no');
+    const cancelButtonText = params.buttonNoText || translate('button.No');
     const denyButtonText = params.buttonDenyText || '';
     const showCancelButton = params.buttonNo !== false;
     const showConfirmButton = params.buttonYes !== false;

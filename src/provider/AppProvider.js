@@ -1,40 +1,39 @@
 import React, {useEffect} from 'react';
-import {flatten} from "utils/helpers";
-import routers from "router/routers";
+import {flatten, route} from "utils/helpers";
+import menus from "router/menus";
 import {useLocation} from "react-router-dom";
-import {useAppState} from "stores/module/app.store";
-import {serviceCheckThemeApp, serviceFetchStartApp, serviceSetCurrentPageApp} from "services/app.service";
-import {useAuthState} from "stores/module/auth.store";
-import {serviceFetchCheckTokenAuth} from "services/auth.service";
+import {useAppState} from "store/module/app.store";
+import {serviceAppCheckTheme, serviceAppFetchStart, serviceAppSetCurrentPage} from "services/app.service";
+import {useAuthState} from "store/module/auth.store";
+import {serviceAuthFetchCheckToken} from "services/auth.service";
 
 function AppProvider({children}) {
     const {token} = useAuthState();
-    const pages = flatten(routers);
+    const pages = flatten(menus);
     const {pathname} = useLocation();
     const {theme} = useAppState();
     const {applicationShow} = useAppState();
 
     useEffect(() => {
-        serviceCheckThemeApp();
+        serviceAppCheckTheme();
     }, [theme])
 
     useEffect(() => {
-        const findPage = pages.find(i => i.path === pathname);
+        const findPage = pages.find(i => route(i.route) === pathname);
         if (findPage) {
-            delete findPage.element;
-            delete findPage.children;
-            serviceSetCurrentPageApp(findPage)
+            delete findPage.icon;
+            serviceAppSetCurrentPage(findPage)
         }
     }, [pathname])
 
     useEffect(() => {
         if (token) {
-            serviceFetchCheckTokenAuth();
+            serviceAuthFetchCheckToken();
         }
     }, [token])
 
     useEffect(() => {
-        serviceFetchStartApp();
+        serviceAppFetchStart();
     }, [])
 
     if (applicationShow)

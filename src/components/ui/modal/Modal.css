@@ -7,5 +7,9 @@
 }
 
 .ant-modal-header {
-    @apply dark:bg-gray-900 dark:border-gray-800
+    @apply dark:bg-gray-900 dark:border-gray-800 p-4
+}
+
+.ant-modal-body {
+    @apply p-4
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAuthState} from "stores/module/auth.store";
+import {useAuthState} from "store/module/auth.store";
 import {Navigate} from "react-router-dom";
 
 function AuthProvider({children}) {

@@ -1,4 +1,4 @@
-import stores from 'stores'
+import stores from 'store'
 import {
     setError,
     setLanguage,
@@ -7,48 +7,48 @@ import {
     setCurrentPage,
     setPhotos,
     setApplicationShow, setLoading, setMobileMenuOpen
-} from "stores/module/app.store";
+} from "store/module/app.store";
 import {api} from "utils/api";
 import CommonApi from "api/common.api";
 
 const dispatch = stores.dispatch;
 
-export const serviceSetLanguageApp = (language) => {
+export const serviceAppSetLanguage = (language) => {
     dispatch(setLanguage(language));
     window.location.reload();
 }
 
-export const serviceSetLanguagesApp = (languages) => {
+export const serviceAppSetLanguages = (languages) => {
     dispatch(setLanguages(languages));
 }
 
-export const serviceSetLoadingApp = (action) => {
+export const serviceAppSetLoading = (action) => {
     dispatch(setLoading(action));
 }
 
-export const serviceSetErrorApp = (errors) => {
+export const serviceAppSetError = (errors) => {
     dispatch(setError(errors));
 }
 
-export const serviceSetCurrentPageApp = (page) => {
+export const serviceAppSetCurrentPage = (page) => {
     dispatch(setCurrentPage(page));
 }
 
-export const serviceThemeChangeApp = () => {
+export const serviceAppThemeChange = () => {
     dispatch(themeChange());
 }
 
-export const serviceMobileMenuOpenApp = (action) => {
+export const serviceAppMobileMenuOpen = (action) => {
     dispatch(setMobileMenuOpen(action));
 }
 
-export const serviceCheckThemeApp = () => {
+export const serviceAppCheckTheme = () => {
     const dark = stores.getState().appStore.theme;
     if (dark === 'dark') document.getElementsByTagName('html')[0].classList.add('dark');
     else document.getElementsByTagName('html')[0].classList.remove('dark');
 }
 
-export const serviceFetchStartApp = async () => {
+export const serviceAppFetchStart = async () => {
     const res = await api('get', CommonApi.getAppStart);
     stores.dispatch(setApplicationShow(true))
     stores.dispatch(setLanguages(res.languages));

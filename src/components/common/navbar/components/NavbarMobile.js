@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {useAppState} from "stores/module/app.store";
-import {serviceMobileMenuOpenApp} from "services/app.service";
+import {useAppState} from "store/module/app.store";
+import {serviceAppMobileMenuOpen} from "services/app.service";
 import {NavLink} from "react-router-dom";
 import {FaRegArrowAltCircleLeft} from "@react-icons/all-files/fa/FaRegArrowAltCircleLeft";
 import HeaderClock from "components/common/header/components/HeaderClock";
@@ -14,7 +14,7 @@ function NavbarMobile({menus, pathname}) {
 
     useEffect(() => {
         if (mobileMenuOpen)
-            serviceMobileMenuOpenApp(false);
+            serviceAppMobileMenuOpen(false);
     }, [pathname])
 
 
@@ -30,7 +30,7 @@ function NavbarMobile({menus, pathname}) {
                         </NavLink>
                     </div>
                     <button className="w-10 h-10 flex items-center justify-center text-2xl text-mute"
-                            onClick={() => serviceMobileMenuOpenApp(false)}>
+                            onClick={() => serviceAppMobileMenuOpen(false)}>
                         <span>
                             <FaRegArrowAltCircleLeft/>
                         </span>

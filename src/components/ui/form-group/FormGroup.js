@@ -1,5 +1,5 @@
 import {Tooltip} from "antd";
-import {useAppState} from "stores/module/app.store";
+import {useAppState} from "store/module/app.store";
 
 export default function FormGroup(
     {

@@ -1,7 +1,7 @@
 import axios from "axios";
-import stores from 'stores'
-import {serviceSetErrorApp, serviceSetLoadingApp} from "services/app.service";
-import {serviceSetTokenServiceAuth} from "services/auth.service";
+import stores from 'store'
+import {serviceAppSetError, serviceAppSetLoading} from "services/app.service";
+import {serviceAuthSetToken} from "services/auth.service";
 import {dialog, notification, translate} from "utils/helpers";
 
 const service = () => {
@@ -13,18 +13,18 @@ const service = () => {
     }
 
     const responseResolve = res => {
-        serviceSetErrorApp({});
-        serviceSetLoadingApp(false);
+        serviceAppSetError({});
+        serviceAppSetLoading(false);
         return res.data;
     }
 
     const responseReject = err => {
         const error = err.response;
-        serviceSetErrorApp({});
-        serviceSetLoadingApp(false);
+        serviceAppSetError({});
+        serviceAppSetLoading(false);
         if (error.status === 422) {
             if (typeof error.data === 'object' && Array.isArray(Object.keys(error.data))) {
-                serviceSetErrorApp(error.data);
+                serviceAppSetError(error.data);
             } else {
                 notification({
                     type: 'error',
@@ -32,11 +32,11 @@ const service = () => {
                 });
             }
         } else if (error.status === 401) {
-            serviceSetTokenServiceAuth('');
+            serviceAuthSetToken('');
         } else if (error.status !== 404) {
             notification({
                 type: 'error',
-                message: error.data.message || error.data.exception
+                message: error?.data?.message || error?.data?.exception
             })
         }
 

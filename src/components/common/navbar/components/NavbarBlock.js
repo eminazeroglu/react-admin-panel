@@ -2,8 +2,8 @@ import React, {useEffect, useRef} from 'react';
 import {NavLink} from "react-router-dom";
 import {route, translate} from "utils/helpers";
 import {MdKeyboardArrowDown} from "@react-icons/all-files/md/MdKeyboardArrowDown";
-import {useAppState} from "stores/module/app.store";
-import {serviceMobileMenuOpenApp} from "services/app.service";
+import {useAppState} from "store/module/app.store";
+import {serviceAppMobileMenuOpen} from "services/app.service";
 import {isMobile} from "react-device-detect";
 
 function NavbarBlock({menus, pathname}) {
@@ -31,7 +31,7 @@ function NavbarBlock({menus, pathname}) {
 
     useEffect(() => {
         if (mobileMenuOpen)
-            serviceMobileMenuOpenApp(false);
+            serviceAppMobileMenuOpen(false);
     }, [pathname])
 
     return (
@@ -41,7 +41,7 @@ function NavbarBlock({menus, pathname}) {
                 return (
                     <li key={menuIndex} className="relative group">
                         {!subMenus.length && (
-                            <NavLink to={route(menu.route)} className={`h-10 flex items-center whitespace-nowrap px-3 dark:text-white hover:text-secondary ${pathname === route(menu.route) ? 'text-secondary' : ''}`}>
+                            <NavLink to={route(menu.route)} className={`h-10 flex items-center whitespace-nowrap px-3 lg:text-white hover:text-secondary ${pathname === route(menu.route) ? '!text-secondary' : ''}`}>
                                 <div className="space-x-2 flex items-center">
                                     <span>{menu.icon}</span>
                                     <span>{translate(menu.title)}</span>
@@ -52,7 +52,7 @@ function NavbarBlock({menus, pathname}) {
                             <>
                                 <button
                                     onClick={(e) => isMobile ? handleMenu(e) : false}
-                                    className="h-10 flex items-center whitespace-nowrap space-x-3 px-3 dark:text-white hover:text-secondary">
+                                    className={`h-10 flex items-center whitespace-nowrap ${subMenus.find(i => route(i.route) === pathname) ? '!text-secondary' : ''} space-x-3 px-3 lg:text-white hover:text-secondary`}>
                                     <div className="space-x-2 flex items-center">
                                         <span>{menu.icon}</span>
                                         <span>{translate(menu.title)}</span>
@@ -66,7 +66,7 @@ function NavbarBlock({menus, pathname}) {
                                     className={isMobile ? mobileClass : desktopClass}>
                                     {subMenus.map((subMenu, subMenuIndex) => (
                                         <li key={subMenuIndex + '_' + menuIndex}>
-                                            <NavLink to={route(subMenu.route)} className="h-10 flex items-center px-5 font-semibold text-mute hover:text-secondary whitespace-nowrap hover:bg-gray-100 hover:!text-black dark:hover:bg-gray-700 dark:hover:!text-secondary">
+                                            <NavLink to={route(subMenu.route)} className={`h-10 flex items-center px-5 font-semibold text-mute hover:text-secondary whitespace-nowrap ${pathname === route(subMenu.route) ? '!text-secondary' : ''} hover:bg-gray-100 hover:!text-black dark:hover:bg-gray-700 dark:hover:!text-secondary`}>
                                                 <div className="space-x-2 flex items-center">
                                                     {subMenu.icon && <span>{subMenu.icon}</span>}
                                                     <span>{translate(subMenu.title)}</span>
