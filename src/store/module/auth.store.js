@@ -13,7 +13,10 @@ const authStore = createSlice({
     reducers: {
         setToken: (state, action) => {
             state.token = action.payload;
-            localStorage.setItem('token', state.token)
+            if (state.token)
+                localStorage.setItem('token', state.token)
+            else
+                localStorage.removeItem('token')
         },
         setPermission: (state, action) => {
             state.permissions = action.payload;

@@ -1,55 +1,24 @@
 import React, {useEffect} from 'react';
-import {Card, Table} from "components/ui";
-import {useMenuStore} from "store/module/menu.store";
+import {use$CLASS_NAME$Store} from "store/module/$FILE_NAME$.store";
 import {translate} from "utils/helpers";
+import {Dropdown} from "antd";
 import {
-    serviceMenuDestroy,
-    serviceMenuFetchIndex,
-    serviceMenuSetQuery,
-    serviceMenuSetVisibleFormModal,
-    serviceMenuUpdateAction
-} from "services/menu.service";
-import {Badge, Dropdown} from "antd";
+    service$CLASS_NAME$Destroy,
+    service$CLASS_NAME$FetchIndex,
+    service$CLASS_NAME$SetQuery,
+    service$CLASS_NAME$SetVisibleFormModal,
+    service$CLASS_NAME$UpdateAction
+} from "services/$FILE_NAME$.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
+import {Card, Table} from "components/ui";
 
-function MenuTable(props) {
-
-    const {query, dataSource, loading, translateKey} = useMenuStore();
+function $CLASS_NAME$Table(props) {
+    const {query, dataSource, loading, translateKey} = use$CLASS_NAME$Store();
 
     const columns = [
         {
             title: translate(translateKey + '.Label.Name'),
             dataIndex: 'name'
-        },
-        {
-            title: translate(translateKey + '.Label.Parent'),
-            dataIndex: 'parent',
-            render: value => {
-                return value?.name || '-'
-            }
-        },
-        {
-            title: translate(translateKey + '.Label.Link'),
-            dataIndex: 'link'
-        },
-        {
-            title: translate(translateKey + '.Label.Type'),
-            dataIndex: 'type'
-        },
-        {
-            title: translate(translateKey + '.Label.Position'),
-            dataIndex: 'position',
-            width: 50,
-            align: 'center'
-        },
-        {
-            title: translate(translateKey + '.Label.Status'),
-            dataIndex: 'status',
-            width: 50,
-            align: 'center',
-            render: (value, row) => {
-                return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'} />
-            }
         },
     ];
 
@@ -59,20 +28,20 @@ function MenuTable(props) {
                 <div className="dropdown-body">
                     <div className="dropdown-items">
                         <button
-                            onClick={() => serviceMenuSetVisibleFormModal(true, row)}
+                            onClick={() => service$CLASS_NAME$SetVisibleFormModal(true, row)}
                             className="dropdown-item h-8"
                         >
                             {translate('button.Edit')}
                         </button>
                         <button
                             className="dropdown-item h-8"
-                            onClick={() => serviceMenuUpdateAction(row.id)}
+                            onClick={() => service$CLASS_NAME$UpdateAction(row.id)}
                         >
                             {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
                         </button>
                         <button
                             className="dropdown-item h-8"
-                            onClick={() => serviceMenuDestroy(row.id)}
+                            onClick={() => service$CLASS_NAME$Destroy(row.id)}
                         >
                             {translate('button.Delete')}
                         </button>
@@ -90,14 +59,14 @@ function MenuTable(props) {
     }
 
     useEffect(() => {
-        serviceMenuFetchIndex();
-    }, [])
+        service$CLASS_NAME$FetchIndex();
+    }, [query])
 
     return (
         <Card>
             <Table
                 tableQuery={query}
-                setTableQuery={serviceMenuSetQuery}
+                setTableQuery={service$CLASS_NAME$SetQuery}
                 dataSource={dataSource.data}
                 total={dataSource.total}
                 columns={columns}
@@ -110,4 +79,4 @@ function MenuTable(props) {
     );
 }
 
-export default MenuTable;
+export default $CLASS_NAME$Table;

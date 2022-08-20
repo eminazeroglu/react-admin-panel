@@ -1,31 +1,29 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {useSelector} from "react-redux";
 
-const initialQuery = {
-    page: 1,
-    limit: 25,
-}
-
 const initialState = {
-    translateKey: 'crm.Menu',
-    query: initialQuery,
+    translateKey: 'crm.Permission',
+    query: {
+        page: 1,
+        limit: 25,
+    },
     loading: false,
     dataSource: {},
-    selectList: [],
+    permissions: [],
     tableRow: {},
     item: {},
     visibleFormModal: false
 }
 
-const MenuStore = createSlice({
-    name: 'menuStore',
+const PermissionStore = createSlice({
+    name: 'permissionStore',
     initialState,
     reducers: {
         setDataSource: (state, action) => {
             state.dataSource = action.payload;
         },
         setQuery: (state, action) => {
-            state.query = action.payload ? {...state.query, ...action.payload} : initialQuery;
+            state.query = {...state.query, ...action.payload};
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
@@ -37,7 +35,7 @@ const MenuStore = createSlice({
             state.visibleFormModal = action.payload;
         },
         setSelectList: (state, action) => {
-            state.selectList = action.payload;
+            state.permissions = action.payload;
         },
         setItem: (state, action) => {
             state.item = action.payload;
@@ -53,8 +51,8 @@ export const {
     setTableRow,
     setSelectList,
     setItem
-} = MenuStore.actions;
+} = PermissionStore.actions;
 
-export const useMenuStore = () => useSelector(state => state.menuStore)
+export const usePermissionStore = () => useSelector(state => state.permissionStore)
 
-export default MenuStore.reducer;
+export default PermissionStore.reducer;

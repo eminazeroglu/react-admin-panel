@@ -5,6 +5,7 @@ import {useAuthState} from "store/module/auth.store";
 import {CgProfile} from "@react-icons/all-files/cg/CgProfile";
 import {CgLock} from "@react-icons/all-files/cg/CgLock";
 import {CgLogOut} from "@react-icons/all-files/cg/CgLogOut";
+import {serviceAuthLoginDispatch, serviceAuthLogoutFetch} from "services/auth.service";
 
 function HeaderUserInfo(props) {
 
@@ -46,7 +47,7 @@ function HeaderUserInfo(props) {
     )
 
     const handleAction = (action) => {
-
+        if (action === 'logout') serviceAuthLogoutFetch()
     }
 
     return (

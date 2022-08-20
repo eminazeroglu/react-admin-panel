@@ -7,7 +7,7 @@ const initialQuery = {
 }
 
 const initialState = {
-    translateKey: 'crm.Menu',
+    translateKey: 'crm.User',
     query: initialQuery,
     loading: false,
     dataSource: {},
@@ -17,8 +17,8 @@ const initialState = {
     visibleFormModal: false
 }
 
-const MenuStore = createSlice({
-    name: 'menuStore',
+const UserStore = createSlice({
+    name: 'userStore',
     initialState,
     reducers: {
         setDataSource: (state, action) => {
@@ -53,8 +53,8 @@ export const {
     setTableRow,
     setSelectList,
     setItem
-} = MenuStore.actions;
+} = UserStore.actions;
 
-export const useMenuStore = () => useSelector(state => state.menuStore)
+export const useUserStore = () => useSelector(state => state.userStore)
 
-export default MenuStore.reducer;
+export default UserStore.reducer;

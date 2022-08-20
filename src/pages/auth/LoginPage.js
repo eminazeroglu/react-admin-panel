@@ -12,10 +12,13 @@ function LoginPage(props) {
         email: '',
         password: '',
     });
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         await serviceAuthLoginDispatch(form);
+        setLoading(false)
     }
 
     return (
@@ -51,7 +54,7 @@ function LoginPage(props) {
                             </FormGroup>
                         </Col>
                         <Col span={24}>
-                            <Button block={true} type={'submit'}>
+                            <Button block={true} type={'submit'} loading={loading}>
                                 {translate('button.Login')}
                             </Button>
                         </Col>

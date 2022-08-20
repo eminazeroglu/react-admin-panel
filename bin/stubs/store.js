@@ -7,7 +7,7 @@ const initialQuery = {
 }
 
 const initialState = {
-    translateKey: 'crm.Menu',
+    translateKey: 'crm.$CLASS_NAME$',
     query: initialQuery,
     loading: false,
     dataSource: {},
@@ -17,8 +17,8 @@ const initialState = {
     visibleFormModal: false
 }
 
-const MenuStore = createSlice({
-    name: 'menuStore',
+const $CLASS_NAME$Store = createSlice({
+    name: '$FILE_NAME$Store',
     initialState,
     reducers: {
         setDataSource: (state, action) => {
@@ -53,8 +53,8 @@ export const {
     setTableRow,
     setSelectList,
     setItem
-} = MenuStore.actions;
+} = $CLASS_NAME$Store.actions;
 
-export const useMenuStore = () => useSelector(state => state.menuStore)
+export const use$CLASS_NAME$Store = () => useSelector(state => state.$FILE_NAME$Store)
 
-export default MenuStore.reducer;
+export default $CLASS_NAME$Store.reducer;

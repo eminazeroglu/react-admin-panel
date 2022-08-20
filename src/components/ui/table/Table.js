@@ -24,16 +24,16 @@ export default function Table({
     const [currentPage, setCurrentPage] = useState(1);
     const tableDataInfo = translate('datatable.PageShow')
         .replace('{count}', new Intl.NumberFormat().format(total))
-        .replace('{from}', (tableQuery.start + 1))
-        .replace('{to}', (parseFloat(tableQuery.length) + parseFloat(tableQuery.start)));
+        .replace('{from}', tableQuery.page > 1 ? (((parseFloat(tableQuery.limit) * parseFloat(tableQuery.page)) - tableQuery.limit)+1) : tableQuery.page)
+        .replace('{to}', tableQuery.page > 1 ? (parseFloat(tableQuery.limit) * parseFloat(tableQuery.page)) : parseFloat(tableQuery.limit));
 
     const handleTableChange = (pagination, filters, sorter) => {
         const columnIndex = columns.findIndex(i => i.dataIndex === sorter.field);
         setCurrentPage(pagination.current);
 
         const customQuery = {
-            length: parseFloat(tableQuery.length),
-            start: (parseFloat(pagination.pageSize) * pagination.current) - parseFloat(pagination.pageSize) || 0,
+            limit: parseFloat(tableQuery.limit),
+            page: pagination.current || 1,
             ...filters,
         };
 
@@ -46,10 +46,7 @@ export default function Table({
             customQuery.orderDirection = dir;
         }
 
-        setTableQuery(prevState => ({
-            ...prevState,
-            ...customQuery
-        }));
+        setTableQuery(customQuery);
 
         window.scrollTo({
             top: 0,
@@ -57,12 +54,12 @@ export default function Table({
         });
     }
 
-    const handleChangeLimit = length => {
+    const handleChangeLimit = limit => {
         setCurrentPage(1);
         setTableQuery({
             ...tableQuery,
-            start: 0,
-            length
+            page: 1,
+            limit
         });
     }
 
@@ -94,9 +91,9 @@ export default function Table({
                 className="flex flex-col lg:flex-row justify-between lg:items-center dark-text-secondary space-y-2 lg:space-y-0">
                 <div className="flex whitespace-nowrap items-center space-x-1 font-semibold">
                     <span>{translate('datatable.LengthMenu1')}</span>
-                    <select className="select-box !w-auto" value={tableQuery.length}
+                    <select className="select-box !w-auto" value={tableQuery.limit}
                             onChange={e => handleChangeLimit(e.target.value)}>
-                        {limitPages.length && limitPages.map((i, index) => (
+                        {limitPages.limit && limitPages.map((i, index) => (
                             <option value={i} key={index}>{i}</option>
                         ))}
                     </select>
@@ -119,9 +116,9 @@ export default function Table({
                     rowKey={record => key ? record[key] : (record['id'] || Math.random())}
                     onChange={handleTableChange}
                     loading={loading}
-                    pagination={total > tableQuery.length ? {
+                    pagination={total > tableQuery.limit ? {
                         current: currentPage,
-                        pageSize: tableQuery?.length,
+                        pageSize: tableQuery?.limit,
                         size: 'small',
                         position: ['bottomRight'],
                         total

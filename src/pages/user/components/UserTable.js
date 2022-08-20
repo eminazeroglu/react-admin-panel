@@ -1,46 +1,35 @@
 import React, {useEffect} from 'react';
-import {Card, Table} from "components/ui";
-import {useMenuStore} from "store/module/menu.store";
+import {useUserStore} from "store/module/user.store";
 import {translate} from "utils/helpers";
-import {
-    serviceMenuDestroy,
-    serviceMenuFetchIndex,
-    serviceMenuSetQuery,
-    serviceMenuSetVisibleFormModal,
-    serviceMenuUpdateAction
-} from "services/menu.service";
 import {Badge, Dropdown} from "antd";
+import {
+    serviceUserDestroy,
+    serviceUserFetchIndex,
+    serviceUserSetQuery,
+    serviceUserSetVisibleFormModal,
+    serviceUserUpdateAction
+} from "services/user.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
+import {Card, Table} from "components/ui";
 
-function MenuTable(props) {
-
-    const {query, dataSource, loading, translateKey} = useMenuStore();
+function UserTable(props) {
+    const {query, dataSource, loading, translateKey} = useUserStore();
 
     const columns = [
         {
-            title: translate(translateKey + '.Label.Name'),
-            dataIndex: 'name'
+            title: translate(translateKey + '.Label.FullName'),
+            dataIndex: 'fullname'
         },
         {
-            title: translate(translateKey + '.Label.Parent'),
-            dataIndex: 'parent',
+            title: translate(translateKey + '.Label.Email'),
+            dataIndex: 'email',
+        },
+        {
+            title: translate(translateKey + '.Label.Permission'),
+            dataIndex: 'permission_group',
             render: value => {
                 return value?.name || '-'
             }
-        },
-        {
-            title: translate(translateKey + '.Label.Link'),
-            dataIndex: 'link'
-        },
-        {
-            title: translate(translateKey + '.Label.Type'),
-            dataIndex: 'type'
-        },
-        {
-            title: translate(translateKey + '.Label.Position'),
-            dataIndex: 'position',
-            width: 50,
-            align: 'center'
         },
         {
             title: translate(translateKey + '.Label.Status'),
@@ -59,20 +48,20 @@ function MenuTable(props) {
                 <div className="dropdown-body">
                     <div className="dropdown-items">
                         <button
-                            onClick={() => serviceMenuSetVisibleFormModal(true, row)}
+                            onClick={() => serviceUserSetVisibleFormModal(true, row)}
                             className="dropdown-item h-8"
                         >
                             {translate('button.Edit')}
                         </button>
                         <button
                             className="dropdown-item h-8"
-                            onClick={() => serviceMenuUpdateAction(row.id)}
+                            onClick={() => serviceUserUpdateAction(row.id)}
                         >
                             {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
                         </button>
                         <button
                             className="dropdown-item h-8"
-                            onClick={() => serviceMenuDestroy(row.id)}
+                            onClick={() => serviceUserDestroy(row.id)}
                         >
                             {translate('button.Delete')}
                         </button>
@@ -90,14 +79,14 @@ function MenuTable(props) {
     }
 
     useEffect(() => {
-        serviceMenuFetchIndex();
-    }, [])
+        serviceUserFetchIndex();
+    }, [query])
 
     return (
         <Card>
             <Table
                 tableQuery={query}
-                setTableQuery={serviceMenuSetQuery}
+                setTableQuery={serviceUserSetQuery}
                 dataSource={dataSource.data}
                 total={dataSource.total}
                 columns={columns}
@@ -110,4 +99,4 @@ function MenuTable(props) {
     );
 }
 
-export default MenuTable;
+export default UserTable;

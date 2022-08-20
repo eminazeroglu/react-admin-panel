@@ -19,6 +19,7 @@ function Button({
     tooltip,
     tooltipPlacement,
     onClick,
+    block,
     ...props
 }) {
     const handlerOnClick = e => {
@@ -29,7 +30,7 @@ function Button({
         <Tooltip placement={tooltipPlacement} title={tooltip}>
             <AntdButton {...props}
                         htmlType={type}
-                        className={`btn btn--${property} ${className || ''} ${(disabled || loading) ? 'pointer-events-none opacity-80' : ''}`}
+                        className={`btn btn--${property} ${className || ''} ${block ? 'btn--block' : ''} ${(disabled || loading) ? 'pointer-events-none opacity-80' : ''}`}
                         onClick={(e) => handlerOnClick(e)}
                         loading={loading}
                         icon={<IconElement icon={icon} iconClass={iconClass || ''} hasChildren={!!children}/>}>

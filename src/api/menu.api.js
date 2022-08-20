@@ -1,14 +1,14 @@
 const MenuApi = {
-    postMenuCreate: '/crud/menus',
-    postMenuAction: '/crud/menus/:id/action',
+    postCreate: '/crud/menus',
+    postAction: '/crud/menus/:id/action',
 
-    putMenuUpdate: '/crud/menus/:id',
+    putUpdate: '/crud/menus/:id',
 
-    deleteMenuDestroy: '/crud/menus/:id',
+    deleteDestroy: '/crud/menus/:id',
 
-    getMenuIndex: '/crud/menus',
-    getMenuSelect: '/crud/menus/select',
-    getMenuId: '/crud/menus/:id',
+    getIndex: '/crud/menus',
+    getSelect: '/crud/menus/select',
+    getId: '/crud/menus/:id',
 }
 
 export default MenuApi;
