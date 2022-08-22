@@ -15,7 +15,7 @@ function UserFilter(props) {
     const initialFilter = {
         fullname: '',
         email: '',
-        type: '',
+        permission: '',
         status: ''
     }
     const [filter, setFilter] = useState(initialFilter);
@@ -69,6 +69,7 @@ function UserFilter(props) {
                         label={translate(translateKey + '.Label.Permission')}
                     >
                         <FormSelect
+                            allowClear={false}
                             options={permissions}
                             value={filter.permission}
                             onChange={e => setFilter(f => ({...f, permission: e}))}

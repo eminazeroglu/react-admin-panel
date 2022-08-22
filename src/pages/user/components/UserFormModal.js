@@ -4,28 +4,27 @@ import {translate} from "utils/helpers";
 import {useUserStore} from "store/module/user.store";
 import {serviceUserSave, serviceUserSetVisibleFormModal} from "services/user.service";
 import {Col, Row} from "antd";
-import {FormInput} from "components/ui/form";
-import {useAppState} from "store/module/app.store";
+import {FormInput, FormSelect} from "components/ui/form";
 import {serviceAppSetError} from "services/app.service";
+import {usePermissionStore} from "store/module/permission.store";
+import {servicePermissionSelectList} from "services/permission.service";
 
 function UserFormModal(props) {
 
-    const {languages} = useAppState();
     const {visibleFormModal, tableRow, translateKey} = useUserStore();
     const [loading, setLoading] = useState(false)
 
+    const {permissions} = usePermissionStore();
     const [form, setForm] = useState({});
 
     const handleForm = (item = {}) => {
-        let translates = {};
-        languages.filter(i => {
-            translates[i.code] = {
-                name: item.translates && item.translates[i.code] ? item.translates[i.code].name : ''
-            }
-        })
         const customForm = {
             id: item.id || '',
-            translates,
+            email: item.email || '',
+            password: item.password || '',
+            name: item.name || '',
+            surname: item.surname || '',
+            permission_id: item.permission_id || 1,
         };
         setForm({...customForm});
     }
@@ -47,29 +46,99 @@ function UserFormModal(props) {
         handleForm(tableRow);
     }, [tableRow])
 
+    useEffect(() => {
+        if (visibleFormModal) {
+            servicePermissionSelectList();
+        }
+    }, [visibleFormModal])
+
     return (
         <Modal
             title={translate('crm.Sidebar.Users')}
             visible={visibleFormModal}
             onClose={() => serviceUserSetVisibleFormModal(false)}
-            className="w-full"
+            className="lg:!w-96"
         >
             {visibleFormModal && (
                 <form onSubmit={handleSubmit}>
                     <Row gutter={[16, 16]}>
-                        {languages.length > 0 && languages.map((i, index) => (
-                            <Col span={24} key={index}>
-                                <FormGroup
-                                    label={translate(translateKey + '.Label.Name') + ' (' + i.name + ')'}
-                                    error={`translates.${i.code}.name`}
-                                >
-                                    <FormInput
-                                        value={form?.translates[i.code]?.name}
-                                        onChange={e => setForm(f => ({...f, translates: {...form.translates, [i.code]: {name: e.target.value}}}))}
-                                    />
-                                </FormGroup>
-                            </Col>
-                        ))}
+                        <Col span={24}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Email')}
+                                error={"email"}
+                            >
+                                <FormInput
+                                    value={form?.email}
+                                    onChange={e => setForm(f => ({
+                                        ...f,
+                                        email: e.target.value
+                                    }))}
+                                />
+                            </FormGroup>
+                        </Col>
+
+                        <Col span={24}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Password')}
+                                error={!form.id ? "password" : false}
+                            >
+                                <FormInput
+                                    value={form?.password}
+                                    onChange={e => setForm(f => ({
+                                        ...f,
+                                        password: e.target.value
+                                    }))}
+                                />
+                            </FormGroup>
+                        </Col>
+
+                        <Col lg={12} xs={24}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Name')}
+                                error={"name"}
+                            >
+                                <FormInput
+                                    value={form?.name}
+                                    onChange={e => setForm(f => ({
+                                        ...f,
+                                        name: e.target.value
+                                    }))}
+                                />
+                            </FormGroup>
+                        </Col>
+
+                        <Col lg={12} xs={24}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Surname')}
+                                error={"surname"}
+                            >
+                                <FormInput
+                                    value={form?.surname}
+                                    onChange={e => setForm(f => ({
+                                        ...f,
+                                        surname: e.target.value
+                                    }))}
+                                />
+                            </FormGroup>
+                        </Col>
+
+                        <Col lg={24} xs={24}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Permission')}
+                                error={"permission_id"}
+                            >
+                                <FormSelect
+                                    allowClear={false}
+                                    options={permissions.filter(i => i.id)}
+                                    value={form?.permission_id}
+                                    onChange={e => setForm(f => ({
+                                        ...f,
+                                        permission_id: e
+                                    }))}
+                                />
+                            </FormGroup>
+                        </Col>
+
 
                         <Col span={24}>
                             <Button loading={loading} type={'submit'}>

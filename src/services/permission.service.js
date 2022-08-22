@@ -49,7 +49,7 @@ export const servicePermissionDestroy = async (id) => {
 export const servicePermissionSelectList = async () => {
     const res = await api('get', Api.getSelect);
     if (res) store.dispatch(setSelectList([
-        {id: 0, name: translate('enum.Select')},
+        {id: '', name: translate('enum.Select')},
         ...res
     ]));
 }
