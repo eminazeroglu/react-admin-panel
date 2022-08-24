@@ -2,17 +2,18 @@ import React, {useState} from 'react';
 import {Card, FormGroup, Button} from "components/ui";
 import {Col, Row} from "antd";
 import {FormInput} from "components/ui/form";
-import {use$CLASS_NAME$Store} from "store/module/$FILE_NAME$.store";
+import {useLanguageStore} from "store/module/language.store";
 import {translate} from "utils/helpers";
-import {service$CLASS_NAME$SetQuery} from "services/$FILE_NAME$.service";
+import {serviceLanguageSetQuery} from "services/language.service";
 import {FiFilter} from "@react-icons/all-files/fi/FiFilter";
 import {BiReset} from "@react-icons/all-files/bi/BiReset";
 
-function $CLASS_NAME$Filter(props) {
+function LanguageFilter(props) {
 
-    const {translateKey} = use$CLASS_NAME$Store();
+    const {translateKey} = useLanguageStore();
     const initialFilter = {
         name: '',
+        code: '',
     }
     const [filter, setFilter] = useState(initialFilter);
     const [isFilter, setIsFilter] = useState(false);
@@ -20,12 +21,13 @@ function $CLASS_NAME$Filter(props) {
     const handleFilter = () => {
         const customQuery = {};
         if (filter.name) customQuery.name = filter.name;
-        service$CLASS_NAME$SetQuery(customQuery);
+        if (filter.code) customQuery.code = filter.code;
+        serviceLanguageSetQuery(customQuery);
         setIsFilter(true);
     }
 
     const handleReset = () => {
-        service$CLASS_NAME$SetQuery(false);
+        serviceLanguageSetQuery(false);
         setFilter(initialFilter);
         setIsFilter(false);
     }
@@ -33,13 +35,23 @@ function $CLASS_NAME$Filter(props) {
     return (
         <Card className="mb-5">
             <Row gutter={[16, 16]}>
-                <Col xs={24} lg={5}>
+                <Col xs={24} lg={9}>
                     <FormGroup
                         label={translate(translateKey + '.Label.Name')}
                     >
                         <FormInput
                             value={filter.name}
                             onChange={e => setFilter(f => ({...f, name: e.target.value}))}
+                        />
+                    </FormGroup>
+                </Col>
+                <Col xs={24} lg={9}>
+                    <FormGroup
+                        label={translate(translateKey + '.Label.Code')}
+                    >
+                        <FormInput
+                            value={filter.code}
+                            onChange={e => setFilter(f => ({...f, code: e.target.value}))}
                         />
                     </FormGroup>
                 </Col>
@@ -71,4 +83,4 @@ function $CLASS_NAME$Filter(props) {
     );
 }
 
-export default $CLASS_NAME$Filter;
+export default LanguageFilter;

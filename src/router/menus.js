@@ -26,19 +26,19 @@ export default [
         permission: 'accept'
     },
     {
-        title: translateKey + 'SettingLanguages',
+        title: translateKey + 'Languages',
         icon: <IoLanguage/>,
         route: 'app.language',
         permission: 'accept'
     },
     {
-        title: translateKey + 'SettingTranslates',
+        title: translateKey + 'Translates',
         icon: <MdGTranslate/>,
         route: 'app.translate',
         permission: 'accept'
     },
     {
-        title: translateKey + 'SettingPermissions',
+        title: translateKey + 'Permissions',
         icon: <FiKey/>,
         route: 'app.permission',
         permission: 'accept',
