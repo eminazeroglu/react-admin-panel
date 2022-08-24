@@ -3,7 +3,7 @@ import {Button as AntdButton, Tooltip} from "antd";
 
 function IconElement({icon, hasChildren, iconClass}) {
     if (icon)
-        return <i className={`${hasChildren ? 'mr-1 relative top-[1px]' : ''} ${iconClass} ${icon}`}/>
+        return <span className={`${hasChildren ? 'mr-1 relative top-[1px]' : ''} ${iconClass}`}>{icon}</span>
     return false;
 }
 

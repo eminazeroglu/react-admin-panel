@@ -36,8 +36,8 @@ export const serviceUserFetchIndex = async () => {
     serviceUserSetDataSource(res);
 }
 
-export const serviceUserUpdateAction = async (id) => {
-    const res = await api('post', Api.postAction.replace(':id', id), {action: 'is_active'});
+export const serviceUserUpdateAction = async (id, action = 'is_active') => {
+    const res = await api('post', Api.postAction.replace(':id', id), {action});
     if (res) await serviceUserFetchIndex();
 }
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Card, FormGroup} from "components/ui";
+import {Button, Card, FormGroup} from "components/ui";
 import {Col, Row} from "antd";
 import {FormInput, FormSelect} from "components/ui/form";
 import {useUserStore} from "store/module/user.store";
@@ -7,6 +7,8 @@ import {translate} from "utils/helpers";
 import {serviceUserSetQuery} from "services/user.service";
 import {usePermissionStore} from "store/module/permission.store";
 import {servicePermissionSelectList} from "services/permission.service";
+import {FiFilter} from "@react-icons/all-files/fi/FiFilter";
+import {BiReset} from "@react-icons/all-files/bi/BiReset";
 
 function UserFilter(props) {
 
@@ -15,8 +17,7 @@ function UserFilter(props) {
     const initialFilter = {
         fullname: '',
         email: '',
-        permission: '',
-        status: ''
+        permission: ''
     }
     const [filter, setFilter] = useState(initialFilter);
     const [isFilter, setIsFilter] = useState(false);
@@ -26,7 +27,6 @@ function UserFilter(props) {
         if (filter.fullname) customQuery.fullname = filter.fullname;
         if (filter.email) customQuery.email = filter.email;
         if (filter.permission) customQuery.permission = filter.permission;
-        if (filter.status) customQuery.status = filter.status;
         serviceUserSetQuery(customQuery);
         setIsFilter(true);
     }
@@ -44,7 +44,7 @@ function UserFilter(props) {
     return (
         <Card>
             <Row gutter={[16, 16]}>
-                <Col xs={24} lg={5}>
+                <Col xs={24} lg={6}>
                     <FormGroup
                         label={translate(translateKey + '.Label.FullName')}
                     >
@@ -54,7 +54,7 @@ function UserFilter(props) {
                         />
                     </FormGroup>
                 </Col>
-                <Col xs={24} lg={5}>
+                <Col xs={24} lg={6}>
                     <FormGroup
                         label={translate(translateKey + '.Label.Email')}
                     >
@@ -64,7 +64,7 @@ function UserFilter(props) {
                         />
                     </FormGroup>
                 </Col>
-                <Col xs={24} lg={4}>
+                <Col xs={24} lg={6}>
                     <FormGroup
                         label={translate(translateKey + '.Label.Permission')}
                     >
@@ -76,26 +76,26 @@ function UserFilter(props) {
                         />
                     </FormGroup>
                 </Col>
-                <Col xs={24} lg={4}>
-                    <FormGroup
-                        label={translate(translateKey + '.Label.Status')}
-                    >
-                        <FormInput
-                            value={filter.status}
-                            onChange={e => setFilter(f => ({...f, status: e.target.value}))}
-                        />
-                    </FormGroup>
-                </Col>
                 <Col xs={24} lg={6} className="lg:pt-[25px]">
                     <div className="filter-box-buttons">
-                        <button disabled={!Object.keys(filter).filter(i => filter[i]).length} onClick={() => handleFilter()} className="btn btn--primary filter-box-button">
+                        <Button
+                            disabled={!Object.keys(filter).filter(i => filter[i]).length}
+                            onClick={() => handleFilter()}
+                            className="filter-box-button"
+                            icon={<FiFilter/>}
+                        >
                             {translate( 'button.Filter')}
-                        </button>
+                        </Button>
 
                         {isFilter > 0 && (
-                            <button onClick={() => handleReset()} className="btn btn--red filter-box-button">
+                            <Button
+                                onClick={() => handleReset()}
+                                className="filter-box-button"
+                                property={'red'}
+                                icon={<BiReset/>}
+                            >
                                 {translate( 'button.Reset')}
-                            </button>
+                            </Button>
                         )}
                     </div>
                 </Col>

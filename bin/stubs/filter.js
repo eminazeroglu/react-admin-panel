@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {Card, FormGroup} from "components/ui";
+import {Card, FormGroup, Button} from "components/ui";
 import {Col, Row} from "antd";
 import {FormInput} from "components/ui/form";
 import {use$CLASS_NAME$Store} from "store/module/$FILE_NAME$.store";
 import {translate} from "utils/helpers";
 import {service$CLASS_NAME$SetQuery} from "services/$FILE_NAME$.service";
+import {FiFilter} from "@react-icons/all-files/fi/FiFilter";
+import {BiReset} from "@react-icons/all-files/bi/BiReset";
 
 function $CLASS_NAME$Filter(props) {
 
@@ -43,14 +45,24 @@ function $CLASS_NAME$Filter(props) {
                 </Col>
                 <Col xs={24} lg={6} className="lg:pt-[25px]">
                     <div className="filter-box-buttons">
-                        <button disabled={!Object.keys(filter).filter(i => filter[i]).length} onClick={() => handleFilter()} className="btn btn--primary filter-box-button">
+                        <Button
+                            disabled={!Object.keys(filter).filter(i => filter[i]).length}
+                            onClick={() => handleFilter()}
+                            className="filter-box-button"
+                            icon={<FiFilter/>}
+                        >
                             {translate( 'button.Filter')}
-                        </button>
+                        </Button>
 
                         {isFilter > 0 && (
-                            <button onClick={() => handleReset()} className="btn btn--red filter-box-button">
+                            <Button
+                                onClick={() => handleReset()}
+                                className="filter-box-button"
+                                property={'red'}
+                                icon={<BiReset/>}
+                            >
                                 {translate( 'button.Reset')}
-                            </button>
+                            </Button>
                         )}
                     </div>
                 </Col>

@@ -11,6 +11,8 @@ import {
 } from "services/user.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
 import {Card, Table} from "components/ui";
+import {BsUnlock} from "@react-icons/all-files/bs/BsUnlock";
+import {BsLock} from "@react-icons/all-files/bs/BsLock";
 
 function UserTable(props) {
     const {query, dataSource, loading, translateKey} = useUserStore();
@@ -40,6 +42,17 @@ function UserTable(props) {
                 return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'} />
             }
         },
+        {
+            title: translate(translateKey + '.Label.SystemStatus'),
+            dataIndex: 'status',
+            width: 50,
+            align: 'center',
+            render: (value, row) => {
+                return <div className="flex justify-center">
+                    {row.is_block ? <BsLock/> : <BsUnlock/>}
+                </div>
+            }
+        },
     ];
 
     const actionRender = (row) => {
@@ -58,6 +71,12 @@ function UserTable(props) {
                             onClick={() => serviceUserUpdateAction(row.id)}
                         >
                             {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
+                        </button>
+                        <button
+                            className="dropdown-item h-8"
+                            onClick={() => serviceUserUpdateAction(row.id, 'is_block')}
+                        >
+                            {row.is_block ? translate('button.UserUnBlock') : translate('button.UserBlock')}
                         </button>
                         <button
                             className="dropdown-item h-8"
