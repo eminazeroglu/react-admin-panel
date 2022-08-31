@@ -18,7 +18,7 @@
 }
 
 .btn--action {
-    @apply h-6 w-6 !text-xs items-center inline-flex justify-center
+    @apply h-6 w-6 !text-xs items-center inline-flex justify-center !p-0
 }
 
 .btn[disabled] {

@@ -18,7 +18,7 @@ export const notification = (params = {}) => {
     const onClose = params?.onClose ? params.onClose() : false;
 
     AntdNotification[type]({
-        message: params?.title || translate('notification.alert'),
+        message: params?.title || translate('notification.Warning.Title'),
         description: params.message,
         placement,
         onClose: () => {

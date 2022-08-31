@@ -10,11 +10,13 @@ function FormTextarea(
         maxLength,
         showCount,
         onChange,
+        rows,
         ...props
     }
 ) {
     return (
-        <Input
+        <Input.TextArea
+            rows={rows}
             allowClear={allowClear}
             bordered={bordered}
             showCount={showCount}

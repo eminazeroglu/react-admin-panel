@@ -24,8 +24,9 @@ export const service$CLASS_NAME$SetLoading = (data) => {
     store.dispatch(setLoading(data))
 }
 
-export const service$CLASS_NAME$SetVisibleFormModal = (action, row = {}) => {
-    store.dispatch(setVisibleFormModal(action))
+export const service$CLASS_NAME$SetModal = (name, action, row = {}) => {
+    const dispatch = store.dispatch;
+    if (name === 'form') dispatch(setVisibleFormModal(action))
     store.dispatch(setTableRow(row));
 }
 

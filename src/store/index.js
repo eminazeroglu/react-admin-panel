@@ -6,6 +6,7 @@ import menuStore from 'store/module/menu.store'
 import userStore from 'store/module/user.store'
 import permissionStore from 'store/module/permission.store'
 import languageStore from 'store/module/language.store'
+import translateStore from 'store/module/translate.store'
 
 export default configureStore({
     reducer: {
@@ -15,5 +16,6 @@ export default configureStore({
         userStore,
         permissionStore,
         languageStore,
+        translateStore,
     }
 })

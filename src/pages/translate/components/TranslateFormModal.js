@@ -1,57 +1,73 @@
 import React, {useEffect, useState} from 'react';
 import {Button, FormGroup, Modal} from "components/ui";
 import {translate} from "utils/helpers";
-import {use$CLASS_NAME$Store} from "store/module/$FILE_NAME$.store";
-import {service$CLASS_NAME$Save, service$CLASS_NAME$SetModal} from "services/$FILE_NAME$.service";
+import {useTranslateStore} from "store/module/translate.store";
+import {serviceTranslateSave, serviceTranslateSetModal} from "services/translate.service";
 import {Col, Row} from "antd";
-import {FormInput} from "components/ui/form";
+import {FormTextarea} from "components/ui/form";
 import {useAppState} from "store/module/app.store";
 import {serviceAppSetError} from "services/app.service";
+import {serviceLanguageSelectList} from "services/language.service";
 
-function $CLASS_NAME$FormModal(props) {
+function TranslateFormModal(props) {
 
     const {languages} = useAppState();
-    const {visibleFormModal, tableRow, translateKey} = use$CLASS_NAME$Store();
+    const {visibleFormModal, tableRow} = useTranslateStore();
     const [loading, setLoading] = useState(false)
     const [ready, setReady] = useState(false)
 
     const [form, setForm] = useState({});
 
     const handleForm = async (item = {}) => {
-        let translates = {};
+        const customForm = {};
+        console.log(languages);
         await languages.filter(i => {
-            translates[i.code] = {
-                name: item.translates && item.translates[i.code] ? item.translates[i.code].name : ''
+            customForm[i.code] = {
+                key: item[i.code],
+                text: translate(item[i.code], {lang: i.code})
             }
         })
-        const customForm = {
-            id: item.id || '',
-            translates,
-        };
         await setForm({...customForm});
         setReady(true);
     }
 
+    const handleField = (value, key) => {
+        setForm(prevState => {
+            return {
+                ...prevState,
+                [key]: {
+                    ...prevState[key],
+                    text: value
+                }
+            }
+        });
+    }
+
     const handleClose = () => {
         serviceAppSetError({});
-        service$CLASS_NAME$SetModal('form', false);
+        serviceTranslateSetModal('form', false);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const res = await service$CLASS_NAME$Save(form);
+        const res = await serviceTranslateSave(form);
         if (res) handleClose();
         setLoading(false)
     }
 
+    const fetchLanguage = async () => {
+        await serviceLanguageSelectList()
+        await handleForm(tableRow);
+    }
+
     useEffect(() => {
-        handleForm(tableRow);
+        fetchLanguage();
     }, [tableRow])
 
     return (
         <Modal
-            title={translate('crm.Sidebar.$CLASS_NAME$s')}
+            title={translate('crm.Sidebar.Translates')}
             visible={visibleFormModal}
             onClose={() => handleClose()}
             className="w-full"
@@ -62,12 +78,14 @@ function $CLASS_NAME$FormModal(props) {
                         {languages.length > 0 && languages.map((i, index) => (
                             <Col span={24} key={index}>
                                 <FormGroup
-                                    label={translate(translateKey + '.Label.Name') + ' (' + i.name + ')'}
-                                    error={`translates.${i.code}.name`}
+                                    label={i.name}
+                                    error={`${i.code}.text`}
+                                    elementClass={'!h-auto'}
                                 >
-                                    <FormInput
-                                        value={form?.translates[i.code]?.name}
-                                        onChange={e => setForm(f => ({...f, translates: {...form.translates, [i.code]: {name: e.target.value}}}))}
+                                    <FormTextarea
+                                        rows={5}
+                                        value={form[i.code]?.text}
+                                        onChange={e => handleField(e.target.value, i.code)}
                                     />
                                 </FormGroup>
                             </Col>
@@ -85,4 +103,4 @@ function $CLASS_NAME$FormModal(props) {
     );
 }
 
-export default $CLASS_NAME$FormModal;
+export default TranslateFormModal;

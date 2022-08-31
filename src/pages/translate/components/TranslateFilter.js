@@ -1,34 +1,38 @@
-import React, {useState} from 'react';
-import {Card, FormGroup, Button} from "components/ui";
+import React, {useEffect, useState} from 'react';
+import {Button, Card, FormGroup} from "components/ui";
 import {Col, Row} from "antd";
-import {FormInput} from "components/ui/form";
-import {useLanguageStore} from "store/module/language.store";
+import {FormTreeSelect} from "components/ui/form";
+import {useTranslateStore} from "store/module/translate.store";
 import {translate} from "utils/helpers";
-import {serviceLanguageSetQuery} from "services/language.service";
+import {serviceTranslateKeys, serviceTranslateSetQuery} from "services/translate.service";
 import {FiFilter} from "@react-icons/all-files/fi/FiFilter";
 import {BiReset} from "@react-icons/all-files/bi/BiReset";
 
-function LanguageFilter(props) {
+function TranslateFilter(props) {
 
-    const {translateKey} = useLanguageStore();
+    const {translateKeys} = useTranslateStore();
     const initialFilter = {
-        name: '',
+        key: '',
     }
     const [filter, setFilter] = useState(initialFilter);
     const [isFilter, setIsFilter] = useState(false);
 
     const handleFilter = () => {
         const customQuery = {};
-        if (filter.name) customQuery.name = filter.name;
-        serviceLanguageSetQuery(customQuery);
+        if (filter.key) customQuery.key = filter.key;
+        serviceTranslateSetQuery(customQuery);
         setIsFilter(true);
     }
 
     const handleReset = () => {
-        serviceLanguageSetQuery(false);
+        serviceTranslateSetQuery(false);
         setFilter(initialFilter);
         setIsFilter(false);
     }
+
+    useEffect(() => {
+        serviceTranslateKeys();
+    }, [])
 
     return (
         <Card className="mb-5">
@@ -37,11 +41,13 @@ function LanguageFilter(props) {
                     <Row gutter={[16, 16]}>
                         <Col xs={24} lg={24}>
                             <FormGroup
-                                label={translate(translateKey + '.Label.Name')}
+                                label={translate('crm.Language.Label.TranslateKey')}
                             >
-                                <FormInput
-                                    value={filter.name}
-                                    onChange={e => setFilter(f => ({...f, name: e.target.value}))}
+                                <FormTreeSelect
+                                    options={translateKeys}
+                                    fieldNames={{label: 'name', value: 'key'}}
+                                    value={filter.key}
+                                    onChange={e => setFilter(f => ({...f, key: e}))}
                                 />
                             </FormGroup>
                         </Col>
@@ -73,4 +79,4 @@ function LanguageFilter(props) {
     );
 }
 
-export default LanguageFilter;
+export default TranslateFilter;

@@ -104,8 +104,12 @@
     @apply dark:text-gray-300
 }
 
-.ant-select-dropdown {
+.ant-select-dropdown, .ant-select-tree-list {
     @apply dark:bg-gray-800 dark:text-white dark:border dark:border-gray-700
+}
+
+.ant-select-tree-list {
+    @apply !border-none
 }
 
 .ant-input-password-icon.anticon {
@@ -117,8 +121,14 @@
 }
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled),
-.ant-select-item-option-active:not(.ant-select-item-option-disabled)
+.ant-select-item-option-active:not(.ant-select-item-option-disabled),
+.ant-select-tree-node-selected:not(.ant-select-tree-node-disabled),
+.ant-select-tree-node-active:not(.ant-select-tree-node-disabled)
 {
+    @apply dark:bg-gray-700
+}
+
+.ant-select-tree-node-content-wrapper-normal:hover {
     @apply dark:bg-gray-700
 }
 

@@ -15,6 +15,13 @@ const service = () => {
     const responseResolve = res => {
         serviceAppSetError({});
         serviceAppSetLoading(false);
+
+        if (res.config.method !== 'get' && res.status === 200) {
+            notification({
+                message: translate('notification.ActionSuccess')
+            })
+        }
+
         return res.data;
     }
 

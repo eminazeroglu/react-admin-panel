@@ -6,7 +6,7 @@ import {
     serviceLanguageDestroy,
     serviceLanguageFetchIndex,
     serviceLanguageSetQuery,
-    serviceLanguageSetVisibleFormModal,
+    serviceLanguageSetModal,
     serviceLanguageUpdateAction
 } from "services/language.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
@@ -41,7 +41,7 @@ function LanguageTable(props) {
                 <div className="dropdown-body">
                     <div className="dropdown-items">
                         <button
-                            onClick={() => serviceLanguageSetVisibleFormModal(true, row)}
+                            onClick={() => serviceLanguageSetModal('form', true, row)}
                             className="dropdown-item h-8"
                         >
                             {translate('button.Edit')}

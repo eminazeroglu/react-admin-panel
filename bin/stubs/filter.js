@@ -32,41 +32,43 @@ function $CLASS_NAME$Filter(props) {
 
     return (
         <Card className="mb-5">
-            <Row gutter={[16, 16]}>
-                <Col xs={24} lg={5}>
-                    <FormGroup
-                        label={translate(translateKey + '.Label.Name')}
-                    >
-                        <FormInput
-                            value={filter.name}
-                            onChange={e => setFilter(f => ({...f, name: e.target.value}))}
-                        />
-                    </FormGroup>
-                </Col>
-                <Col xs={24} lg={6} className="lg:pt-[25px]">
-                    <div className="filter-box-buttons">
-                        <Button
-                            disabled={!Object.keys(filter).filter(i => filter[i]).length}
-                            onClick={() => handleFilter()}
-                            className="filter-box-button"
-                            icon={<FiFilter/>}
-                        >
-                            {translate( 'button.Filter')}
-                        </Button>
-
-                        {isFilter > 0 && (
-                            <Button
-                                onClick={() => handleReset()}
-                                className="filter-box-button"
-                                property={'red'}
-                                icon={<BiReset/>}
+            <div className="flex items-center justify-between space-x-5">
+                <div className="flex-1">
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} lg={24}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Name')}
                             >
-                                {translate( 'button.Reset')}
-                            </Button>
-                        )}
-                    </div>
-                </Col>
-            </Row>
+                                <FormInput
+                                    value={filter.name}
+                                    onChange={e => setFilter(f => ({...f, name: e.target.value}))}
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                </div>
+                <div className="filter-box-buttons lg:pt-[25px]">
+                    <Button
+                        disabled={!Object.keys(filter).filter(i => filter[i]).length}
+                        onClick={() => handleFilter()}
+                        className="filter-box-button"
+                        icon={<FiFilter/>}
+                    >
+                        {translate( 'button.Filter')}
+                    </Button>
+
+                    {isFilter > 0 && (
+                        <Button
+                            onClick={() => handleReset()}
+                            className="filter-box-button"
+                            property={'red'}
+                            icon={<BiReset/>}
+                        >
+                            {translate( 'button.Reset')}
+                        </Button>
+                    )}
+                </div>
+            </div>
         </Card>
     );
 }

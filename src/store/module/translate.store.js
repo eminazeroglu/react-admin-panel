@@ -7,18 +7,18 @@ const initialQuery = {
 }
 
 const initialState = {
-    translateKey: 'crm.$CLASS_NAME$',
+    translateKey: 'crm.Translate',
     query: initialQuery,
     loading: false,
     dataSource: {},
-    $FILE_NAME$s: [],
+    translateKeys: [],
     tableRow: {},
     item: {},
     visibleFormModal: false
 }
 
-const $CLASS_NAME$Store = createSlice({
-    name: '$FILE_NAME$Store',
+const TranslateStore = createSlice({
+    name: 'translateStore',
     initialState,
     reducers: {
         setDataSource: (state, action) => {
@@ -33,11 +33,14 @@ const $CLASS_NAME$Store = createSlice({
         setTableRow: (state, action) => {
             state.tableRow = action.payload;
         },
+        setTranslateKeys: (state, action) => {
+            state.translateKeys = action.payload;
+        },
         setVisibleFormModal: (state, action) => {
             state.visibleFormModal = action.payload;
         },
         setSelectList: (state, action) => {
-            state.$FILE_NAME$s = action.payload;
+            state.selectList = action.payload;
         },
         setItem: (state, action) => {
             state.item = action.payload;
@@ -52,9 +55,10 @@ export const {
     setVisibleFormModal,
     setTableRow,
     setSelectList,
+    setTranslateKeys,
     setItem
-} = $CLASS_NAME$Store.actions;
+} = TranslateStore.actions;
 
-export const use$CLASS_NAME$Store = () => useSelector(state => state.$FILE_NAME$Store)
+export const useTranslateStore = () => useSelector(state => state.translateStore)
 
-export default $CLASS_NAME$Store.reducer;
+export default TranslateStore.reducer;

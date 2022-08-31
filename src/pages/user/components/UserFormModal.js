@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, FormGroup, Modal} from "components/ui";
 import {translate} from "utils/helpers";
 import {useUserStore} from "store/module/user.store";
-import {serviceUserSave, serviceUserSetVisibleFormModal} from "services/user.service";
+import {serviceUserSave, serviceUserSetModal} from "services/user.service";
 import {Col, Row} from "antd";
 import {FormInput, FormSelect} from "components/ui/form";
 import {serviceAppSetError} from "services/app.service";
@@ -31,7 +31,7 @@ function UserFormModal(props) {
 
     const handleClose = () => {
         serviceAppSetError({});
-        serviceUserSetVisibleFormModal(false);
+        serviceUserSetModal('form', false);
     }
 
     const handleSubmit = async (e) => {
@@ -56,7 +56,7 @@ function UserFormModal(props) {
         <Modal
             title={translate('crm.Sidebar.Users')}
             visible={visibleFormModal}
-            onClose={() => serviceUserSetVisibleFormModal(false)}
+            onClose={() => handleClose()}
             className="lg:!w-96"
         >
             {visibleFormModal && (

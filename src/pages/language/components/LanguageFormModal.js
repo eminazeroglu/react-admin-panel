@@ -2,30 +2,34 @@ import React, {useEffect, useState} from 'react';
 import {Button, FormGroup, Modal} from "components/ui";
 import {translate} from "utils/helpers";
 import {useLanguageStore} from "store/module/language.store";
-import {serviceLanguageSave, serviceLanguageSetVisibleFormModal} from "services/language.service";
+import {serviceLanguageSave, serviceLanguageSetModal} from "services/language.service";
 import {Col, Row} from "antd";
 import {FormInput} from "components/ui/form";
+import {useAppState} from "store/module/app.store";
 import {serviceAppSetError} from "services/app.service";
 
 function LanguageFormModal(props) {
 
+    const {languages} = useAppState();
     const {visibleFormModal, tableRow, translateKey} = useLanguageStore();
     const [loading, setLoading] = useState(false)
+    const [ready, setReady] = useState(false)
 
     const [form, setForm] = useState({});
 
-    const handleForm = (item = {}) => {
+    const handleForm = async (item = {}) => {
         const customForm = {
             id: item.id || '',
-            name: item.name || '',
-            code: item.code || '',
+            name: item?.name || '',
+            code: item?.code || '',
         };
-        setForm({...customForm});
+        await setForm({...customForm});
+        setReady(true);
     }
 
     const handleClose = () => {
         serviceAppSetError({});
-        serviceLanguageSetVisibleFormModal(false);
+        serviceLanguageSetModal('form', false);
     }
 
     const handleSubmit = async (e) => {
@@ -44,10 +48,10 @@ function LanguageFormModal(props) {
         <Modal
             title={translate('crm.Sidebar.Languages')}
             visible={visibleFormModal}
-            onClose={() => serviceLanguageSetVisibleFormModal(false)}
+            onClose={() => handleClose()}
             className="w-full"
         >
-            {visibleFormModal && (
+            {ready && (
                 <form onSubmit={handleSubmit}>
                     <Row gutter={[16, 16]}>
                         <Col span={24}>
@@ -56,7 +60,7 @@ function LanguageFormModal(props) {
                                 error={'name'}
                             >
                                 <FormInput
-                                    value={form?.name}
+                                    value={form.name}
                                     onChange={e => setForm(f => ({...f, name: e.target.value}))}
                                 />
                             </FormGroup>
@@ -68,7 +72,7 @@ function LanguageFormModal(props) {
                                 error={'code'}
                             >
                                 <FormInput
-                                    value={form?.code}
+                                    value={form.code}
                                     onChange={e => setForm(f => ({...f, code: e.target.value}))}
                                 />
                             </FormGroup>

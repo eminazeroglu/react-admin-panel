@@ -1,19 +1,23 @@
 import React from 'react';
 import {Button, Page} from "components/ui";
 import {translate} from "utils/helpers";
-import {serviceUserSetVisibleFormModal} from "services/user.service";
+import {serviceUserSetModal} from "services/user.service";
 import UserFilter from "pages/user/components/UserFilter";
 import UserTable from "pages/user/components/UserTable";
 import UserFormModal from "pages/user/components/UserFormModal";
 import {FiPlus} from "@react-icons/all-files/fi/FiPlus";
+import {useUserStore} from "store/module/user.store";
 
 function UserPage(props) {
+
+    const {visibleFormModal} = useUserStore();
+
     return (
         <Page
             action={
                 <Button
                     className="btn btn--primary"
-                    onClick={() => serviceUserSetVisibleFormModal(true)}
+                    onClick={() => serviceUserSetModal('form',true)}
                     icon={<FiPlus/>}
                     type={'button'}
                 >
@@ -24,7 +28,7 @@ function UserPage(props) {
             <div className="space-y-5">
                 <UserFilter/>
                 <UserTable/>
-                <UserFormModal/>
+                {visibleFormModal && <UserFormModal/>}
             </div>
         </Page>
     );

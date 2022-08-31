@@ -24,8 +24,9 @@ export const serviceUserSetLoading = (data) => {
     store.dispatch(setLoading(data))
 }
 
-export const serviceUserSetVisibleFormModal = (action, row = {}) => {
-    store.dispatch(setVisibleFormModal(action))
+export const serviceUserSetModal = (name, action, row = {}) => {
+    const dispatch = store.dispatch;
+    if (name === 'form') dispatch(setVisibleFormModal(action))
     store.dispatch(setTableRow(row));
 }
 
@@ -61,8 +62,7 @@ export const serviceUserSave = async (data) => {
         else res = await api('post', Api.postCreate, data)
         if (res) await serviceUserFetchIndex();
         return true;
-    }
-    catch (e) {
+    } catch (e) {
         return false;
     }
 }

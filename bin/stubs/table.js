@@ -6,7 +6,7 @@ import {
     service$CLASS_NAME$Destroy,
     service$CLASS_NAME$FetchIndex,
     service$CLASS_NAME$SetQuery,
-    service$CLASS_NAME$SetVisibleFormModal,
+    service$CLASS_NAME$SetModal,
     service$CLASS_NAME$UpdateAction
 } from "services/$FILE_NAME$.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
@@ -37,7 +37,7 @@ function $CLASS_NAME$Table(props) {
                 <div className="dropdown-body">
                     <div className="dropdown-items">
                         <button
-                            onClick={() => service$CLASS_NAME$SetVisibleFormModal(true, row)}
+                            onClick={() => service$CLASS_NAME$SetModal('form', true, row)}
                             className="dropdown-item h-8"
                         >
                             {translate('button.Edit')}

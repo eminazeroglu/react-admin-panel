@@ -6,7 +6,7 @@ export default function Table({
                                   columns,
                                   dataSource,
                                   total,
-                                  key,
+                                  rowKey,
                                   loading,
                                   onChecked,
                                   tableQuery,
@@ -15,16 +15,18 @@ export default function Table({
                                   actionButton,
                                   actionTitle,
                                   actionWidth,
+                                  actionFixed = false,
                                   selected,
                                   sortingStart,
-                                  limitPages = [10, 25, 50, 100]
+                                  limitPages = [10, 25, 50, 100],
+                                  ...props
                               }) {
 
     const [tableColumns, setTableColumns] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const tableDataInfo = translate('datatable.PageShow')
         .replace('{count}', new Intl.NumberFormat().format(total))
-        .replace('{from}', tableQuery.page > 1 ? (((parseFloat(tableQuery.limit) * parseFloat(tableQuery.page)) - tableQuery.limit)+1) : tableQuery.page)
+        .replace('{from}', tableQuery.page > 1 ? (((parseFloat(tableQuery.limit) * parseFloat(tableQuery.page)) - tableQuery.limit) + 1) : tableQuery.page)
         .replace('{to}', tableQuery.page > 1 ? (parseFloat(tableQuery.limit) * parseFloat(tableQuery.page)) : parseFloat(tableQuery.limit));
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -73,6 +75,7 @@ export default function Table({
                     width: actionWidth || 100,
                     key: 't_action',
                     align: 'center',
+                    fixed: actionFixed,
                     render: (text, record, index) => (
                         actionButton({
                             ...record,
@@ -113,7 +116,7 @@ export default function Table({
                     columns={tableColumns}
                     dataSource={dataSource}
                     size={'small'}
-                    rowKey={record => key ? record[key] : (record['id'] || Math.random())}
+                    rowKey={record => rowKey ? record[rowKey] : (record['id'] || Math.random())}
                     onChange={handleTableChange}
                     loading={loading}
                     pagination={total > tableQuery.limit ? {
@@ -130,6 +133,7 @@ export default function Table({
                             if (onChecked) onChecked(selectedRows);
                         }
                     } : ''}
+                    {...props}
                 />
             </div>
         </section>

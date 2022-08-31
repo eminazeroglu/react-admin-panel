@@ -14,21 +14,36 @@ export const serviceAuthSetPermission = (permissions) => {
 }
 
 export const serviceAuthLoginDispatch = async (params) => {
-    const res = await api('post', AuthApi.postAuthLogin, params);
-    if (res) {
-        serviceAuthSetToken(res);
+    try {
+        const res = await api('post', AuthApi.postAuthLogin, params);
+        if (res) {
+            serviceAuthSetToken(res);
+        }
+    }
+    catch (e) {
+        return false;
     }
 }
 
 export const serviceAuthLogoutFetch = async () => {
-    const res = await api('get', AuthApi.getAuthLogout);
-    if (res) {
-        serviceAuthSetToken(false);
+    try {
+        const res = await api('get', AuthApi.getAuthLogout);
+        if (res) {
+            serviceAuthSetToken(false);
+        }
+    }
+    catch (e) {
+        return false
     }
 }
 
 export const serviceAuthFetchCheckToken = async () => {
-    const res = await api('get', AuthApi.getAuthCheckToken);
-    stores.dispatch(setUser(res.user));
-    stores.dispatch(setPermission(res.permissions));
+    try {
+        const res = await api('get', AuthApi.getAuthCheckToken);
+        stores.dispatch(setUser(res.user));
+        stores.dispatch(setPermission(res.permissions));
+    }
+    catch (e) {
+        return false;
+    }
 }

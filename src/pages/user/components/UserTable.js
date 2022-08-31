@@ -5,8 +5,8 @@ import {Badge, Dropdown} from "antd";
 import {
     serviceUserDestroy,
     serviceUserFetchIndex,
+    serviceUserSetModal,
     serviceUserSetQuery,
-    serviceUserSetVisibleFormModal,
     serviceUserUpdateAction
 } from "services/user.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
@@ -61,7 +61,7 @@ function UserTable(props) {
                 <div className="dropdown-body">
                     <div className="dropdown-items">
                         <button
-                            onClick={() => serviceUserSetVisibleFormModal(true, row)}
+                            onClick={() => serviceUserSetModal('form', true, row)}
                             className="dropdown-item h-8"
                         >
                             {translate('button.Edit')}

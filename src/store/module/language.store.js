@@ -11,7 +11,7 @@ const initialState = {
     query: initialQuery,
     loading: false,
     dataSource: {},
-    selectList: [],
+    languages: [],
     tableRow: {},
     item: {},
     visibleFormModal: false
@@ -37,7 +37,7 @@ const LanguageStore = createSlice({
             state.visibleFormModal = action.payload;
         },
         setSelectList: (state, action) => {
-            state.selectList = action.payload;
+            state.languages = action.payload;
         },
         setItem: (state, action) => {
             state.item = action.payload;

@@ -43,63 +43,65 @@ function UserFilter(props) {
 
     return (
         <Card>
-            <Row gutter={[16, 16]}>
-                <Col xs={24} lg={6}>
-                    <FormGroup
-                        label={translate(translateKey + '.Label.FullName')}
-                    >
-                        <FormInput
-                            value={filter.fullname}
-                            onChange={e => setFilter(f => ({...f, fullname: e.target.value}))}
-                        />
-                    </FormGroup>
-                </Col>
-                <Col xs={24} lg={6}>
-                    <FormGroup
-                        label={translate(translateKey + '.Label.Email')}
-                    >
-                        <FormInput
-                            value={filter.email}
-                            onChange={e => setFilter(f => ({...f, email: e.target.value}))}
-                        />
-                    </FormGroup>
-                </Col>
-                <Col xs={24} lg={6}>
-                    <FormGroup
-                        label={translate(translateKey + '.Label.Permission')}
-                    >
-                        <FormSelect
-                            allowClear={false}
-                            options={permissions}
-                            value={filter.permission}
-                            onChange={e => setFilter(f => ({...f, permission: e}))}
-                        />
-                    </FormGroup>
-                </Col>
-                <Col xs={24} lg={6} className="lg:pt-[25px]">
-                    <div className="filter-box-buttons">
-                        <Button
-                            disabled={!Object.keys(filter).filter(i => filter[i]).length}
-                            onClick={() => handleFilter()}
-                            className="filter-box-button"
-                            icon={<FiFilter/>}
-                        >
-                            {translate( 'button.Filter')}
-                        </Button>
-
-                        {isFilter > 0 && (
-                            <Button
-                                onClick={() => handleReset()}
-                                className="filter-box-button"
-                                property={'red'}
-                                icon={<BiReset/>}
+            <div className="flex items-center justify-between space-x-5">
+                <div className="flex-1">
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} lg={8}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.FullName')}
                             >
-                                {translate( 'button.Reset')}
-                            </Button>
-                        )}
-                    </div>
-                </Col>
-            </Row>
+                                <FormInput
+                                    value={filter.fullname}
+                                    onChange={e => setFilter(f => ({...f, fullname: e.target.value}))}
+                                />
+                            </FormGroup>
+                        </Col>
+                        <Col xs={24} lg={8}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Email')}
+                            >
+                                <FormInput
+                                    value={filter.email}
+                                    onChange={e => setFilter(f => ({...f, email: e.target.value}))}
+                                />
+                            </FormGroup>
+                        </Col>
+                        <Col xs={24} lg={8}>
+                            <FormGroup
+                                label={translate(translateKey + '.Label.Permission')}
+                            >
+                                <FormSelect
+                                    allowClear={false}
+                                    options={permissions}
+                                    value={filter.permission}
+                                    onChange={e => setFilter(f => ({...f, permission: e}))}
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                </div>
+                <div className="filter-box-buttons lg:pt-[25px]">
+                    <Button
+                        disabled={!Object.keys(filter).filter(i => filter[i]).length}
+                        onClick={() => handleFilter()}
+                        className="filter-box-button"
+                        icon={<FiFilter/>}
+                    >
+                        {translate( 'button.Filter')}
+                    </Button>
+
+                    {isFilter > 0 && (
+                        <Button
+                            onClick={() => handleReset()}
+                            className="filter-box-button"
+                            property={'red'}
+                            icon={<BiReset/>}
+                        >
+                            {translate( 'button.Reset')}
+                        </Button>
+                    )}
+                </div>
+            </div>
         </Card>
     );
 }
