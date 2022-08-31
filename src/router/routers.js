@@ -12,6 +12,7 @@ import LanguagePage from "pages/language/LanguagePage";
 import TranslatePage from "pages/translate/TranslatePage";
 import PermissionPage from "pages/permission/PermissionPage";
 import SettingPage from "pages/setting/SettingPage";
+import PermissionOptionPage from "pages/permission/PermissionOptionPage";
 
 const routers = [
     {
@@ -55,6 +56,12 @@ const routers = [
                 path: 'permission',
                 permission: 'accept',
                 element: <PermissionPage/>,
+            },
+            {
+                name: 'permission-option',
+                path: 'permission-option/:id',
+                permission: 'accept',
+                element: <PermissionOptionPage/>,
             },
             {
                 name: 'setting',

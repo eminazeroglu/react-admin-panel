@@ -109,3 +109,12 @@
 .badge-status .ant-badge-status-text {
     @apply hidden
 }
+
+.table {
+    @apply border border-color w-full
+}
+
+.table tr th,
+.table tr td {
+    @apply p-2 border border-color text-sm
+}

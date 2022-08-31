@@ -1,12 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {useSelector} from "react-redux";
 
+const initialQuery = {
+    page: 1,
+    limit: 25,
+}
+
 const initialState = {
     translateKey: 'crm.Permission',
-    query: {
-        page: 1,
-        limit: 25,
-    },
+    query: initialQuery,
     loading: false,
     dataSource: {},
     permissions: [],
@@ -23,7 +25,7 @@ const PermissionStore = createSlice({
             state.dataSource = action.payload;
         },
         setQuery: (state, action) => {
-            state.query = {...state.query, ...action.payload};
+            state.query = action.payload ? {...state.query, ...action.payload} : initialQuery;
         },
         setLoading: (state, action) => {
             state.loading = action.payload;

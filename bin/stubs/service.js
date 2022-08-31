@@ -70,5 +70,5 @@ export const service$CLASS_NAME$Save = async (data) => {
 
 export const service$CLASS_NAME$Item = async (id) => {
     const res = await api('get', Api.getId.replace(':id', id))
-    if (res) setItem(res);
+    if (res) store.dispatch(setItem(res));
 }
