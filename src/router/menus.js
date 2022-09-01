@@ -4,6 +4,8 @@ import {MdGTranslate} from "@react-icons/all-files/md/MdGTranslate";
 import {IoLanguage} from "@react-icons/all-files/io5/IoLanguage";
 import {FiKey} from "@react-icons/all-files/fi/FiKey";
 import {BsReverseLayoutTextWindowReverse} from "@react-icons/all-files/bs/BsReverseLayoutTextWindowReverse";
+import {FiSearch} from "@react-icons/all-files/fi/FiSearch";
+import {FiCode} from "@react-icons/all-files/fi/FiCode";
 
 const translateKey = 'crm.Sidebar.';
 export default [
@@ -41,6 +43,12 @@ export default [
         title: translateKey + 'Permissions',
         icon: <FiKey/>,
         route: 'app.permission',
+        permission: 'accept',
+    },
+    {
+        title: translateKey + 'SeoMetaTag',
+        icon: <FiCode/>,
+        route: 'app.seo',
         permission: 'accept',
     },
     {

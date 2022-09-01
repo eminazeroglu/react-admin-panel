@@ -7,6 +7,7 @@ import userStore from 'store/module/user.store'
 import permissionStore from 'store/module/permission.store'
 import languageStore from 'store/module/language.store'
 import translateStore from 'store/module/translate.store'
+import seoStore from 'store/module/seo.store'
 
 export default configureStore({
     reducer: {
@@ -17,5 +18,6 @@ export default configureStore({
         permissionStore,
         languageStore,
         translateStore,
+        seoStore
     }
 })

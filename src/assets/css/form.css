@@ -294,3 +294,11 @@
 .form-hr {
     @apply bg-gray-200 h-10 flex items-center px-3 dark:bg-gray-600
 }
+
+.form-element .ant-input-textarea-show-count {
+    @apply w-full appearance-none
+}
+
+.form-element .ant-input-textarea-show-count:after {
+    @apply dark:text-gray-200 p-1
+}

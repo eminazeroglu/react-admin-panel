@@ -13,6 +13,7 @@ import TranslatePage from "pages/translate/TranslatePage";
 import PermissionPage from "pages/permission/PermissionPage";
 import SettingPage from "pages/setting/SettingPage";
 import PermissionOptionPage from "pages/permission/PermissionOptionPage";
+import SeoPage from "pages/seo/SeoPage";
 
 const routers = [
     {
@@ -62,6 +63,12 @@ const routers = [
                 path: 'permission-option/:id',
                 permission: 'accept',
                 element: <PermissionOptionPage/>,
+            },
+            {
+                name: 'seo',
+                path: 'seo',
+                permission: 'accept',
+                element: <SeoPage/>,
             },
             {
                 name: 'setting',

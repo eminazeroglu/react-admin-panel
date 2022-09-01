@@ -20,7 +20,6 @@ function TranslateFormModal(props) {
 
     const handleForm = async (item = {}) => {
         const customForm = {};
-        console.log(languages);
         await languages.filter(i => {
             customForm[i.code] = {
                 key: item[i.code],
