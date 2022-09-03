@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {useSettingStore} from "store/module/setting.store";
 import {serviceSettingItem, serviceSettingSave} from "services/setting.service";
 import {serviceLanguageSelectList} from "services/language.service";
 import {Button, Card, FormGroup} from "components/ui";
 import {translate} from "utils/helpers";
 import {Col, Row} from "antd";
-import {FormInput, FormTextarea} from "components/ui/form";
+import {FormInput} from "components/ui/form";
 import {FiMinus} from "@react-icons/all-files/fi/FiMinus";
 import {FiPlus} from "@react-icons/all-files/fi/FiPlus";
 
 function SettingSocialPage(props) {
     const tab = 'social-page'
-    const {translateKey} = useSettingStore();
     const [form, setForm] = useState([]);
     const [link, setLink] = useState('');
     const [loading, setLoading] = useState(false);
