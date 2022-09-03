@@ -21,6 +21,7 @@ const routers = [
         path: '/',
         element: <AppLayout/>,
         auth: true,
+        permission: 'accept',
         children: [
             {
                 name: 'home',
@@ -31,49 +32,49 @@ const routers = [
             {
                 name: 'menu',
                 path: 'menu',
-                permission: 'accept',
+                permission: 'menu.read',
                 element: <MenuPage/>,
             },
             {
                 name: 'user',
                 path: 'user',
-                permission: 'accept',
+                permission: 'user.read',
                 element: <UserPage/>,
             },
             {
                 name: 'language',
                 path: 'language',
-                permission: 'accept',
+                permission: 'language.read',
                 element: <LanguagePage/>,
             },
             {
                 name: 'translate',
                 path: 'translate',
-                permission: 'accept',
+                permission: 'language.read',
                 element: <TranslatePage/>,
             },
             {
                 name: 'permission',
                 path: 'permission',
-                permission: 'accept',
+                permission: 'permission.read',
                 element: <PermissionPage/>,
             },
             {
                 name: 'permission-option',
                 path: 'permission-option/:id',
-                permission: 'accept',
+                permission: 'permission.read',
                 element: <PermissionOptionPage/>,
             },
             {
                 name: 'seo',
                 path: 'seo',
-                permission: 'accept',
+                permission: 'seo_meta_tag.read',
                 element: <SeoPage/>,
             },
             {
                 name: 'setting',
                 path: 'setting',
-                permission: 'accept',
+                permission: 'setting.read',
                 element: <SettingPage/>,
             },
         ]

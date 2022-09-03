@@ -35,7 +35,7 @@ function NavbarBlock({menus, pathname}) {
     }, [pathname])
 
     return (
-        <ul className={`container mx-auto lg:flex items-center justify-between p-1 py-3 lg:p-0`}>
+        <ul className={`container mx-auto lg:flex items-center lg:space-x-5 p-1 py-3 lg:p-0`}>
             {menus.length > 0 && menus.map((menu, menuIndex) => {
                 const subMenus = menu?.children?.length > 0 ? menu.children.filter(i => i.access) : [];
                 return (

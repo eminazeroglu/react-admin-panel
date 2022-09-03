@@ -27,6 +27,9 @@
 .custom-tab .ant-tabs-tab-btn {
     @apply font-bold
 }
+.custom-tab .ant-tabs-tab {
+    @apply select-none
+}
 .custom-tab .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     @apply text-primary
 }
