@@ -201,3 +201,17 @@ export const dialog = (params = {}) => {
             })
     })
 }
+
+export const getIframeSrc = (val, type = null) => {
+    let pattern = /<iframe.*?\/iframe>/gm;
+    return val.replace(pattern, function (sMatch) {
+        let url = /src="(.*?)"/g.exec(sMatch);
+        url = url[0].replace('src="', '');
+        url = url.replace('"', '');
+        if (type === 'remove_http') {
+            url = url.replace('https://', '');
+            url = url.replace('http://', '');
+        }
+        return url;
+    });
+}

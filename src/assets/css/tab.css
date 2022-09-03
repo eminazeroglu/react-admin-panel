@@ -55,3 +55,15 @@
 .custom-tab.custom-tab--column .ant-tabs-tab .ant-tabs-tab-btn {
     @apply w-full
 }
+
+.custom-tab.ant-tabs-left {
+    @apply w-full
+}
+
+.custom-tab.ant-tabs-left .ant-tabs-tab {
+    @apply !mt-0
+}
+
+.custom-tab.ant-tabs-left .ant-tabs-content-holder {
+    @apply flex-1
+}

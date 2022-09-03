@@ -14,7 +14,7 @@ export default function Card({title, subTitle, titleClass, headerRender, childre
                     )}
                 </div>
             )}
-            <div className={`px-5 py-3 overflow-x-auto ${bodyClass || ''}`}>
+            <div className={`p-3 overflow-x-auto ${bodyClass || ''}`}>
                 {children}
             </div>
         </section>
