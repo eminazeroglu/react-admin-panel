@@ -14,7 +14,7 @@ export default function Page({children, count, breadcrumbFirst, title, action}) 
 
     return (
         <section className="flex flex-col py-8 px-4 lg:px-0">
-            <div className="flex lg:justify-between flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0">
+            <div className="flex lg:justify-between flex-col lg:flex-row lg:items-center space-y-0">
                 <div className="flex-1">
                     <h2 className="font-bold text-xl dark-text-primary">{title || translate(currentPage?.title)} {count} </h2>
                     <ul className="flex items-center py-3 space-x-2 font-semibold text-sm mb-3">
@@ -42,7 +42,7 @@ export default function Page({children, count, breadcrumbFirst, title, action}) 
                 </div>
             </div>
 
-            <div>
+            <div className="mt-5 lg:mt-0">
                 {children}
             </div>
         </section>

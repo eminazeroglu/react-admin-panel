@@ -353,3 +353,27 @@
 .form-photo__buttons input {
     display: none;
 }
+
+.tox-tinymce {
+    @apply !border-none !w-full
+}
+.tox-notifications-container,
+.tox-statusbar__branding {
+    @apply hidden
+}
+.tox:not(.tox-tinymce-inline) .tox-editor-header {
+    border-bottom: 1px solid #e3e3e3 !important;
+    @apply !shadow-none
+}
+.tox.tox-tinymce-aux .tox-toolbar__overflow {
+    background-image: initial !important;
+    @apply !px-1
+}
+.tox .tox-toolbar__group {
+    @apply !p-0
+}
+
+.tox:not(.tox-tinymce-inline) .tox-editor-header {
+    border-bottom-color: initial !important;
+    @apply dark:!border-gray-600
+}

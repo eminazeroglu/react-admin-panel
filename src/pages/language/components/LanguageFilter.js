@@ -32,7 +32,7 @@ function LanguageFilter(props) {
 
     return (
         <Card className="mb-5">
-            <div className="flex items-center justify-between space-x-5">
+            <div className="filter-box">
                 <div className="flex-1">
                     <Row gutter={[16, 16]}>
                         <Col xs={24} lg={24}>

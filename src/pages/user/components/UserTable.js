@@ -102,19 +102,17 @@ function UserTable(props) {
     }, [query])
 
     return (
-        <Card>
-            <Table
-                tableQuery={query}
-                setTableQuery={serviceUserSetQuery}
-                dataSource={dataSource.data}
-                total={dataSource.total}
-                columns={columns}
-                loading={loading}
-                sortingStart={1}
-                actionWidth={40}
-                actionButton={row => actionRender(row)}
-            />
-        </Card>
+        <Table
+            tableQuery={query}
+            setTableQuery={serviceUserSetQuery}
+            dataSource={dataSource.data}
+            total={dataSource.total}
+            columns={columns}
+            loading={loading}
+            sortingStart={1}
+            actionWidth={40}
+            actionButton={row => actionRender(row)}
+        />
     );
 }
 

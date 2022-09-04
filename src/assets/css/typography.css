@@ -31,6 +31,10 @@
     @apply text-[#6c757d] dark:text-gray-300
 }
 
+.filter-box {
+    @apply lg:flex items-center justify-between lg:space-x-5 space-y-5 lg:space-y-0
+}
+
 .filter-box-buttons {
     @apply block lg:flex space-y-4 lg:space-y-0 lg:space-x-4 whitespace-nowrap
 }

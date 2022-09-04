@@ -40,7 +40,10 @@ export const serviceLanguageFetchIndex = async () => {
 
 export const serviceLanguageUpdateAction = async (id) => {
     const res = await api('post', Api.postAction.replace(':id', id), {action: 'is_active'});
-    if (res) await serviceLanguageFetchIndex();
+    if (res) {
+        await serviceAppFetchStart();
+        await serviceLanguageFetchIndex();
+    }
 }
 
 export const serviceLanguageDestroy = async (id) => {
@@ -48,12 +51,19 @@ export const serviceLanguageDestroy = async (id) => {
     if (res) await serviceLanguageFetchIndex();
 }
 
-export const serviceLanguageSelectList = async (empty = false) => {
+export const serviceLanguageSelectList = async (empty = true) => {
     const res = await api('get', Api.getSelect);
-    if (res) store.dispatch(setSelectList([
-        {id: 0, name: translate('enum.Select')},
-        ...res
-    ]));
+    let items = [];
+    if (!empty) {
+        items = [...res];
+    }
+    else {
+        items = [
+            {id: 0, name: translate('enum.Select')},
+            ...res
+        ]
+    }
+    if (res) store.dispatch(setSelectList(items));
 }
 
 export const serviceLanguageSave = async (data) => {
