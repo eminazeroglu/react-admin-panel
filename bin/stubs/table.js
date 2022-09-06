@@ -72,19 +72,17 @@ function $CLASS_NAME$Table(props) {
     }, [query])
 
     return (
-        <Card>
-            <Table
-                tableQuery={query}
-                setTableQuery={service$CLASS_NAME$SetQuery}
-                dataSource={dataSource.data}
-                total={dataSource.total}
-                columns={columns}
-                loading={loading}
-                sortingStart={1}
-                actionWidth={40}
-                actionButton={row => actionRender(row)}
-            />
-        </Card>
+        <Table
+            tableQuery={query}
+            setTableQuery={service$CLASS_NAME$SetQuery}
+            dataSource={dataSource.data}
+            total={dataSource.total}
+            columns={columns}
+            loading={loading}
+            sortingStart={1}
+            actionWidth={40}
+            actionButton={row => actionRender(row)}
+        />
     );
 }
 

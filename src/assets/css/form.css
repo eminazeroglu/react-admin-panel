@@ -76,7 +76,7 @@
     @apply text-red-500 text-sm dark:text-red-400
 }
 
-[class^=ant-]:not('dropdown'), [class*=" ant-"]:not('dropdown') {
+[class^=ant-]:not(.dropdown), [class*=" ant-"]:not(.dropdown) {
     @apply
     focus:!outline-none focus:!shadow-none focus:!border-none
     active:!outline-none active:!shadow-none active:!border-none
@@ -376,4 +376,41 @@
 .tox:not(.tox-tinymce-inline) .tox-editor-header {
     border-bottom-color: initial !important;
     @apply dark:!border-gray-600
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner {
+    @apply dark:text-white
+}
+
+.ant-picker-time-panel-column:not(:first-child) {
+    @apply border-color
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner:hover,
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+    @apply dark:bg-gray-700
+}
+
+.ant-picker-now-btn {
+    @apply dark:text-white
+}
+
+.ant-picker-ok .ant-btn:disabled {
+    @apply dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400
+}
+
+.ant-picker-ok .ant-btn {
+    @apply dark:bg-secondary dark:border-secondary dark:text-gray-900 bg-primary text-white border-primary
+}
+
+.form-color {
+    @apply !w-full flex items-center px-3
+}
+
+.form-color__button {
+    @apply dark:!border-gray-600 border-[#d9d9d9] !p-0 !rounded overflow-hidden
+}
+
+.form-color__text {
+    @apply ml-4
 }

@@ -10,7 +10,7 @@ export default function Page({children, count, breadcrumbFirst, title, action}) 
     const pages = flatten(menus);
     const {currentPage} = useAppState();
     const homePage = pages.find(page => route(page.route) === '/');
-    const parentPage = pages.find(page => page.route === currentPage?.parent);
+    const parentPage = currentPage?.parent ? pages.find(page => page.route === currentPage?.parent) : '';
 
     return (
         <section className="flex flex-col py-8 px-4 lg:px-0">
