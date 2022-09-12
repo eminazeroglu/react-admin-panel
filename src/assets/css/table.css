@@ -11,7 +11,7 @@
 }
 
 .ui-table .ant-table-tbody > tr > td {
-    @apply dark:!border-gray-700 text-sm !px-3
+    @apply dark:!border-gray-700 text-sm !px-3 dark:bg-gray-800
 }
 
 .ui-table .ant-table-thead > tr > th {
@@ -59,4 +59,23 @@
 
 .ui-table .ant-table-sticky-holder {
     @apply bg-transparent
+}
+
+.ant-table-sticky-scroll {
+    @apply hidden
+}
+
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td {
+    overflow-wrap: initial !important;
+}
+
+.ui-table .ant-table-thead > tr > th.ant-table-cell:not(.ant-table-selection-column):not(.td-action),
+.ui-table .ant-table-tbody > tr > td.ant-table-cell:not(.ant-table-selection-column):not(.td-action)
+{
+    @apply min-w-[100px]
+}
+
+
+.ui-table .ant-spin-container::after {
+    @apply hidden
 }

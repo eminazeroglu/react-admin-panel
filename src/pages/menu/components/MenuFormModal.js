@@ -6,12 +6,11 @@ import {recursiveNotSearch, translate} from "utils/helpers";
 import {Col, Row} from "antd";
 import {FormInput, FormSelect} from "components/ui/form";
 import {serviceAppSetError} from "services/app.service";
-import {useLanguageStore} from "store/module/language.store";
-import {serviceLanguageSelectList} from "services/language.service";
+import {useAppState} from "store/module/app.store";
 
 function MenuFormModal(props) {
 
-    const {languages} = useLanguageStore();
+    const {languages} = useAppState();
     const {visibleFormModal, tableRow, selectList, translateKey} = useMenuStore();
     const [loading, setLoading] = useState(false)
 
@@ -72,7 +71,6 @@ function MenuFormModal(props) {
     useEffect(() => {
         if (visibleFormModal) {
             serviceMenuSelectList();
-            serviceLanguageSelectList(false)
         }
     }, [visibleFormModal])
 

@@ -19,7 +19,7 @@ function PermissionFormModal(props) {
 
     const handleForm = async (item = {}) => {
         let translates = {};
-        await languages.filter(i => {
+        languages.filter(i => {
             translates[i.code] = {
                 name: item.translates && item.translates[i.code] ? item.translates[i.code].name : ''
             }

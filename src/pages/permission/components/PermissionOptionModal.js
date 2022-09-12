@@ -1,40 +1,40 @@
 import React, {useEffect, useState} from 'react';
-import {NavLink, useParams} from "react-router-dom";
-import {Button, Card, Page} from "components/ui";
-import {route, translate} from "utils/helpers";
+import {Card, Loading, Modal} from "components/ui";
+import {translate} from "utils/helpers";
 import {usePermissionStore} from "store/module/permission.store";
 import {
-    servicePermissionItem,
     servicePermissionOption,
     servicePermissionOptionSave,
     servicePermissionSetModal
 } from "services/permission.service";
 import {Checkbox} from "antd";
-import {FiPlus} from "@react-icons/all-files/fi/FiPlus";
-import {FiArrowLeft} from "@react-icons/all-files/fi/FiArrowLeft";
+import {serviceAppSetError} from "services/app.service";
 
-function PermissionOptionPage(props) {
+function PermissionOptionModal(props) {
 
-    const {id} = useParams();
-    const {item} = usePermissionStore();
+
+    const {tableRow, visibleOptionModal} = usePermissionStore();
     const [title, setTitle] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [datasource, setDatasource] = useState([]);
 
     const fetchList = async () => {
-        const res = await servicePermissionOption(item.id);
+        setLoading(true);
+        const res = await servicePermissionOption(tableRow.id);
         const items = res.map(i => ({
             ...i,
             fullAccess: i.create && i.read && i.update && i.delete && i.action,
             notAccess: !i.create && !i.read && !i.update && !i.delete && !i.action,
         }))
         setDatasource(items);
+        setLoading(false);
     }
 
     const fetchOptionSave  = (id) => {
         const permission = datasource.find(i => i.id === id);
         const post = {
             permission_id: permission.id,
-            group_id: item.id,
+            group_id: tableRow.id,
             option: {
                 create: permission.create,
                 read: permission.read,
@@ -66,7 +66,6 @@ function PermissionOptionPage(props) {
 
     const handleFullAccessChange = (value, id) => {
         const index = datasource.findIndex(i => i.id === id);
-        console.log(datasource[index]);
         if (index >= 0) {
             if (value) {
                 datasource[index].create = true;
@@ -89,50 +88,44 @@ function PermissionOptionPage(props) {
         fetchOptionSave(datasource[index].id);
     }
 
-    useEffect(() => {
-        if (item?.name) {
-            setTitle(translate('crm.Sidebar.Permissions') + (item?.name ? ' / ' + item?.name : ''))
-            fetchList();
-        }
-    }, [item])
+    const handleClose = () => {
+        serviceAppSetError({});
+        servicePermissionSetModal('option', false);
+    }
 
     useEffect(() => {
-        servicePermissionItem(id);
-    }, [id])
+        if (tableRow?.id && visibleOptionModal) {
+            setTitle(translate('crm.Sidebar.Permissions') + (tableRow?.name ? ' / ' + tableRow?.name : ''))
+            fetchList();
+        }
+    }, [tableRow, visibleOptionModal])
 
 
     return (
-        <Page
+        <Modal
             title={title}
-            action={
-                <NavLink
-                    to={route('app.permission')}
-                    className="btn btn--primary space-x-1"
-                    type={'button'}
-                >
-                    <span><FiArrowLeft/></span>
-                    <span>{translate('button.Back')}</span>
-                </NavLink>
-            }
+            visible={visibleOptionModal}
+            onClose={() => handleClose()}
+            className="lg:!w-[900px] !w-full"
         >
-            <Card>
+            <Loading loading={loading}>
                 <table className="table">
                     <thead>
                     <tr>
-                        <th>Adı</th>
-                        <th style={{width: '150px'}}>Tam səlahiyyət</th>
-                        <th style={{width: '150px'}}>Tam məhdudiyyət</th>
-                        <th style={{width: '150px'}}>Baxış</th>
-                        <th style={{width: '150px'}}>Yarat</th>
-                        <th style={{width: '150px'}}>Düzəliş et</th>
-                        <th style={{width: '150px'}}>Sil</th>
-                        <th style={{width: '150px'}}>Digrə</th>
+                        <th style={{width: '200px'}}>Adı</th>
+                        <th style={{width: '100px', textAlign: 'center'}}>Tam səlahiyyət</th>
+                        <th style={{width: '100px', textAlign: 'center'}}>Tam məhdudiyyət</th>
+                        <th style={{width: '100px', textAlign: 'center'}}>Baxış</th>
+                        <th style={{width: '100px', textAlign: 'center'}}>Yarat</th>
+                        <th style={{width: '100px', textAlign: 'center'}}>Düzəliş et</th>
+                        <th style={{width: '100px', textAlign: 'center'}}>Sil</th>
+                        <th style={{width: '100px', textAlign: 'center'}}>Digrə</th>
                     </tr>
                     </thead>
                     <tbody>
                     {datasource.map((i, index) => (
                         <tr key={index}>
-                            <td>{i.name}</td>
+                            <td>{translate(i.name)}</td>
                             <td className="text-center">
                                 <Checkbox
                                     checked={i.fullAccess}
@@ -186,9 +179,9 @@ function PermissionOptionPage(props) {
                     ))}
                     </tbody>
                 </table>
-            </Card>
-        </Page>
+            </Loading>
+        </Modal>
     );
 }
 
-export default PermissionOptionPage;
+export default PermissionOptionModal;

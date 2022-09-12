@@ -8,13 +8,15 @@ const initialQuery = {
 
 const initialState = {
     translateKey: 'crm.Menu',
+    permission: 'menu',
     query: initialQuery,
     loading: false,
     dataSource: {},
     selectList: [],
     tableRow: {},
     item: {},
-    visibleFormModal: false
+    visibleFormModal: false,
+    visibleWidgetModal: false,
 }
 
 const MenuStore = createSlice({
@@ -36,6 +38,9 @@ const MenuStore = createSlice({
         setVisibleFormModal: (state, action) => {
             state.visibleFormModal = action.payload;
         },
+        setVisibleWidgetModal: (state, action) => {
+            state.visibleWidgetModal = action.payload;
+        },
         setSelectList: (state, action) => {
             state.selectList = action.payload;
         },
@@ -52,7 +57,8 @@ export const {
     setVisibleFormModal,
     setTableRow,
     setSelectList,
-    setItem
+    setItem,
+    setVisibleWidgetModal
 } = MenuStore.actions;
 
 export const useMenuStore = () => useSelector(state => state.menuStore)

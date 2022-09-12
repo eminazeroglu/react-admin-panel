@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Button, FormGroup, Modal} from "components/ui";
+import {Button, FormGroup, Modal, Card} from "components/ui";
 import {translate} from "utils/helpers";
 import {use$CLASS_NAME$Store} from "store/module/$FILE_NAME$.store";
 import {service$CLASS_NAME$Save, service$CLASS_NAME$SetModal} from "services/$FILE_NAME$.service";
 import {Col, Row} from "antd";
 import {FormInput} from "components/ui/form";
-import {useAppState} from "store/module/app.store";
 import {serviceAppSetError} from "services/app.service";
+import {serviceLanguageSelectList} from "services/language.service";
+import {useAppState} from "store/module/app.store";
 
 function $CLASS_NAME$FormModal(props) {
 
@@ -19,7 +20,7 @@ function $CLASS_NAME$FormModal(props) {
 
     const handleForm = async (item = {}) => {
         let translates = {};
-        await languages.filter(i => {
+        languages.filter(i => {
             translates[i.code] = {
                 name: item.translates && item.translates[i.code] ? item.translates[i.code].name : ''
             }
@@ -46,6 +47,7 @@ function $CLASS_NAME$FormModal(props) {
     }
 
     useEffect(() => {
+        serviceLanguageSelectList(false)
         handleForm(tableRow);
     }, [tableRow])
 
@@ -59,21 +61,33 @@ function $CLASS_NAME$FormModal(props) {
             {ready && (
                 <form onSubmit={handleSubmit}>
                     <Row gutter={[16, 16]}>
-                        {languages.length > 0 && languages.map((i, index) => (
-                            <Col span={24} key={index}>
-                                <FormGroup
-                                    label={translate(translateKey + '.Label.Name') + ' (' + i.name + ')'}
-                                    error={`translates.${i.code}.name`}
-                                >
-                                    <FormInput
-                                        value={form?.translates[i.code]?.name}
-                                        onChange={e => setForm(f => ({...f, translates: {...form.translates, [i.code]: {name: e.target.value}}}))}
-                                    />
-                                </FormGroup>
-                            </Col>
-                        ))}
 
-                        <Col span={24}>
+                        <Col xs={24} lg={24} className="space-y-3">
+                            {languages.length > 0 && languages.map((i, index) => (
+                                <Card title={i.name} key={index}>
+                                    <Row gutter={[16, 16]}>
+                                        <Col xs={24} lg={24}>
+                                            <FormGroup
+                                                label={translate(translateKey + '.Label.Name') + ' (' + i.name + ')'}
+                                                error={`translates.${i.code}.name`}
+                                            >
+                                                <FormInput
+                                                    value={form?.translates[i.code]?.name}
+                                                    onChange={e => setForm(f => ({...f,
+                                                        translates: {
+                                                            ...f.translates,
+                                                            [i.code]: {...f.translates[i.code], name: e.target.value}
+                                                        }
+                                                    }))}
+                                                />
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                </Card>
+                            ))}
+                        </Col>
+
+                        <Col span={24} className="flex justify-end">
                             <Button loading={loading} type={'submit'}>
                                 {translate('button.Save')}
                             </Button>

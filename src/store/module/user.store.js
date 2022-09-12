@@ -8,6 +8,7 @@ const initialQuery = {
 
 const initialState = {
     translateKey: 'crm.User',
+    permission: 'user',
     query: initialQuery,
     loading: false,
     dataSource: {},

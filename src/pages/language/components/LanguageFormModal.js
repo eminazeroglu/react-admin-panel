@@ -5,12 +5,10 @@ import {useLanguageStore} from "store/module/language.store";
 import {serviceLanguageSave, serviceLanguageSetModal} from "services/language.service";
 import {Col, Row} from "antd";
 import {FormInput} from "components/ui/form";
-import {useAppState} from "store/module/app.store";
 import {serviceAppSetError} from "services/app.service";
 
 function LanguageFormModal(props) {
 
-    const {languages} = useAppState();
     const {visibleFormModal, tableRow, translateKey} = useLanguageStore();
     const [loading, setLoading] = useState(false)
     const [ready, setReady] = useState(false)

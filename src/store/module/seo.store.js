@@ -8,6 +8,7 @@ const initialQuery = {
 
 const initialState = {
     translateKey: 'crm.SeoMetaTag',
+    permission: 'seo_meta_tag',
     query: initialQuery,
     loading: false,
     dataSource: {},

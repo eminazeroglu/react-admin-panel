@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useUserStore} from "store/module/user.store";
-import {translate} from "utils/helpers";
+import {can, translate} from "utils/helpers";
 import {Badge, Dropdown} from "antd";
 import {
     serviceUserDestroy,
@@ -10,12 +10,12 @@ import {
     serviceUserUpdateAction
 } from "services/user.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
-import {Card, Table} from "components/ui";
+import {Table} from "components/ui";
 import {BsUnlock} from "@react-icons/all-files/bs/BsUnlock";
 import {BsLock} from "@react-icons/all-files/bs/BsLock";
 
 function UserTable(props) {
-    const {query, dataSource, loading, translateKey} = useUserStore();
+    const {query, dataSource, loading, translateKey, permission} = useUserStore();
 
     const columns = [
         {
@@ -39,7 +39,7 @@ function UserTable(props) {
             width: 50,
             align: 'center',
             render: (value, row) => {
-                return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'} />
+                return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'}/>
             }
         },
         {
@@ -56,34 +56,43 @@ function UserTable(props) {
     ];
 
     const actionRender = (row) => {
+        if (row.id === 1) return false;
         const menus = (
             <div className="dropdown dropdown--sm">
                 <div className="dropdown-body">
                     <div className="dropdown-items">
-                        <button
-                            onClick={() => serviceUserSetModal('form', true, row)}
-                            className="dropdown-item h-8"
-                        >
-                            {translate('button.Edit')}
-                        </button>
-                        <button
-                            className="dropdown-item h-8"
-                            onClick={() => serviceUserUpdateAction(row.id)}
-                        >
-                            {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
-                        </button>
-                        <button
-                            className="dropdown-item h-8"
-                            onClick={() => serviceUserUpdateAction(row.id, 'is_block')}
-                        >
-                            {row.is_block ? translate('button.UserUnBlock') : translate('button.UserBlock')}
-                        </button>
-                        <button
-                            className="dropdown-item h-8"
-                            onClick={() => serviceUserDestroy(row.id)}
-                        >
-                            {translate('button.Delete')}
-                        </button>
+                        {can(permission + '.update') && (
+                            <button
+                                onClick={() => serviceUserSetModal('form', true, row)}
+                                className="dropdown-item h-8"
+                            >
+                                {translate('button.Edit')}
+                            </button>
+                        )}
+                        {can(permission + '.action') && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => serviceUserUpdateAction(row.id)}
+                            >
+                                {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
+                            </button>
+                        )}
+                        {can(permission + '.action') && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => serviceUserUpdateAction(row.id, 'is_block')}
+                            >
+                                {row.is_block ? translate('button.UserUnBlock') : translate('button.UserBlock')}
+                            </button>
+                        )}
+                        {can(permission + '.delete') && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => serviceUserDestroy(row.id)}
+                            >
+                                {translate('button.Delete')}
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

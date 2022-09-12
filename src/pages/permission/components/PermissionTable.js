@@ -1,28 +1,24 @@
 import React, {useEffect} from 'react';
 import {usePermissionStore} from "store/module/permission.store";
-import {route, translate} from "utils/helpers";
+import {can, translate} from "utils/helpers";
 import {Badge, Dropdown} from "antd";
 import {
     servicePermissionDestroy,
     servicePermissionFetchIndex,
-    servicePermissionSetQuery,
     servicePermissionSetModal,
+    servicePermissionSetQuery,
     servicePermissionUpdateAction
 } from "services/permission.service";
 import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVerticalSharp";
-import {Card, Table} from "components/ui";
-import {NavLink} from "react-router-dom";
+import {Table} from "components/ui";
 
 function PermissionTable(props) {
-    const {query, dataSource, loading, translateKey} = usePermissionStore();
+    const {query, dataSource, loading, translateKey, permission} = usePermissionStore();
 
     const columns = [
         {
             title: translate(translateKey + '.Label.Name'),
-            dataIndex: 'name',
-            render: (value, row) => {
-                return <NavLink className={`${row.id > 2 ? 'link underline' : ''}`} to={route('app.permission-option', {id: row.id})}>{value}</NavLink>
-            }
+            dataIndex: 'name'
         },
         {
             title: translate(translateKey + '.Label.Status'),
@@ -30,7 +26,7 @@ function PermissionTable(props) {
             width: 50,
             align: 'center',
             render: (value, row) => {
-                return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'} />
+                return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'}/>
             }
         },
     ];
@@ -41,24 +37,38 @@ function PermissionTable(props) {
             <div className="dropdown dropdown--sm">
                 <div className="dropdown-body">
                     <div className="dropdown-items">
-                        <button
-                            onClick={() => servicePermissionSetModal('form', true, row)}
-                            className="dropdown-item h-8"
-                        >
-                            {translate('button.Edit')}
-                        </button>
-                        <button
-                            className="dropdown-item h-8"
-                            onClick={() => servicePermissionUpdateAction(row.id)}
-                        >
-                            {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
-                        </button>
-                        <button
-                            className="dropdown-item h-8"
-                            onClick={() => servicePermissionDestroy(row.id)}
-                        >
-                            {translate('button.Delete')}
-                        </button>
+                        {can(permission + '.update') && (
+                            <button
+                                onClick={() => servicePermissionSetModal('form', true, row)}
+                                className="dropdown-item h-8"
+                            >
+                                {translate('button.Edit')}
+                            </button>
+                        )}
+                        {(can(permission + '.create') || can(permission + '.update')) && (
+                            <button
+                                onClick={() => servicePermissionSetModal('option', true, row)}
+                                className="dropdown-item h-8"
+                            >
+                                {translate('crm.Permission.Label.Params')}
+                            </button>
+                        )}
+                        {can(permission + '.action') && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => servicePermissionUpdateAction(row.id)}
+                            >
+                                {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
+                            </button>
+                        )}
+                        {can(permission + '.delete') && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => servicePermissionDestroy(row.id)}
+                            >
+                                {translate('button.Delete')}
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

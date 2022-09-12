@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import {Card, Table} from "components/ui";
+import {Table} from "components/ui";
 import {useMenuStore} from "store/module/menu.store";
-import {translate} from "utils/helpers";
+import {can, translate} from "utils/helpers";
 import {
     serviceMenuDestroy,
     serviceMenuFetchIndex,
     serviceMenuSetQuery,
-    serviceMenuSetVisibleFormModal,
+    serviceMenuSetVisibleFormModal, serviceMenuSetVisibleWidgetModal,
     serviceMenuUpdateAction
 } from "services/menu.service";
 import {Badge, Dropdown} from "antd";
@@ -14,7 +14,7 @@ import {IoEllipsisVerticalSharp} from "@react-icons/all-files/io5/IoEllipsisVert
 
 function MenuTable(props) {
 
-    const {query, dataSource, loading, translateKey} = useMenuStore();
+    const {query, dataSource, loading, translateKey, permission} = useMenuStore();
 
     const columns = [
         {
@@ -48,7 +48,7 @@ function MenuTable(props) {
             width: 50,
             align: 'center',
             render: (value, row) => {
-                return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'} />
+                return <Badge className="badge-status" status={row.is_active ? 'success' : 'error'}/>
             }
         },
     ];
@@ -58,24 +58,38 @@ function MenuTable(props) {
             <div className="dropdown dropdown--sm">
                 <div className="dropdown-body">
                     <div className="dropdown-items">
-                        <button
-                            onClick={() => serviceMenuSetVisibleFormModal(true, row)}
-                            className="dropdown-item h-8"
-                        >
-                            {translate('button.Edit')}
-                        </button>
-                        <button
-                            className="dropdown-item h-8"
-                            onClick={() => serviceMenuUpdateAction(row.id)}
-                        >
-                            {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
-                        </button>
-                        <button
-                            className="dropdown-item h-8"
-                            onClick={() => serviceMenuDestroy(row.id)}
-                        >
-                            {translate('button.Delete')}
-                        </button>
+                        {can(permission + '.update') && (
+                            <button
+                                onClick={() => serviceMenuSetVisibleFormModal(true, row)}
+                                className="dropdown-item h-8"
+                            >
+                                {translate('button.Edit')}
+                            </button>
+                        )}
+                        {can(permission + '.action') && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => serviceMenuUpdateAction(row.id)}
+                            >
+                                {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
+                            </button>
+                        )}
+                        {(can(permission + '.create') || can(permission + '.update')) && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => serviceMenuSetVisibleWidgetModal(true, row)}
+                            >
+                                {translate('crm.Menu.Label.Widgets')}
+                            </button>
+                        )}
+                        {can(permission + '.delete') && (
+                            <button
+                                className="dropdown-item h-8"
+                                onClick={() => serviceMenuDestroy(row.id)}
+                            >
+                                {translate('button.Delete')}
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import {isMobile} from "react-device-detect";
 import {Card} from "components/ui";
 import {useAppState} from "store/module/app.store";
-import stores from "store/index";
 
 export default function Table({
                                   columns,
@@ -20,10 +19,11 @@ export default function Table({
                                   actionTitle,
                                   actionWidth,
                                   actionFixed = false,
+                                  scrollX = false,
                                   selected,
                                   headerFixed = false,
                                   sortingStart,
-                                  limitPages = [10, 25, 50, 100],
+                                  limitPages = [10, 25, 50, 100, 500, 1000],
                                   ...props
                               }) {
 
@@ -85,6 +85,7 @@ export default function Table({
                 columns.push({
                     title: actionTitle || '',
                     dataIndex: 'action',
+                    className: 'td-action',
                     width: actionWidth || 100,
                     key: 't_action',
                     align: 'center',
@@ -135,6 +136,9 @@ export default function Table({
                     onChange={handleTableChange}
                     loading={loading}
                     sticky={!isMobile && headerFixed}
+                    scroll={(!isMobile && scrollX) ? {
+                        x: 'max-content'
+                    } : {}}
                     pagination={total > tableQuery.limit ? {
                         current: currentPage,
                         pageSize: tableQuery?.limit,

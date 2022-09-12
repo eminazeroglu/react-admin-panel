@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page} from "components/ui";
-import {translate} from "utils/helpers";
+import {can, translate} from "utils/helpers";
 import {serviceLanguageSetModal} from "services/language.service";
 import LanguageFilter from "pages/language/components/LanguageFilter";
 import LanguageTable from "pages/language/components/LanguageTable";
@@ -11,25 +11,29 @@ import {useLanguageStore} from "store/module/language.store";
 
 function LanguagePage(props) {
 
-    const {visibleFormModal} = useLanguageStore();
+    const {visibleFormModal, permission} = useLanguageStore();
 
     return (
         <Page
             action={
-                <Button
-                    className="btn btn--primary"
-                    onClick={() => serviceLanguageSetModal('form', true)}
-                    icon={<FiPlus/>}
-                    type={'button'}
-                >
-                    {translate('button.Add')}
-                </Button>
+                <>
+                    {can(permission + '.create') && (
+                        <Button
+                            className="btn btn--primary"
+                            onClick={() => serviceLanguageSetModal('form', true)}
+                            icon={<FiPlus/>}
+                            type={'button'}
+                        >
+                            {translate('button.Add')}
+                        </Button>
+                    )}
+                </>
             }
         >
             <div className="space-y-5">
                 <LanguageFilter/>
                 <LanguageTable/>
-                {visibleFormModal && <LanguageFormModal/>}
+                {(visibleFormModal && (can(permission + '.create') || can(permission + '.update'))) && <LanguageFormModal/>}
             </div>
         </Page>
     );

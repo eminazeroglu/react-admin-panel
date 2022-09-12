@@ -6,7 +6,7 @@ import {
     setQuery,
     setSelectList,
     setTableRow,
-    setVisibleFormModal
+    setVisibleFormModal, setVisibleOptionModal
 } from "store/module/permission.store";
 import {api} from "utils/api";
 import Api from "api/permission.api";
@@ -27,6 +27,7 @@ export const servicePermissionSetLoading = (data) => {
 export const servicePermissionSetModal = (name, action, row = {}) => {
     const dispatch = store.dispatch;
     if (name === 'form') dispatch(setVisibleFormModal(action))
+    if (name === 'option') dispatch(setVisibleOptionModal(action))
     store.dispatch(setTableRow(row));
 }
 
@@ -50,7 +51,7 @@ export const servicePermissionDestroy = async (id) => {
 export const servicePermissionSelectList = async () => {
     const res = await api('get', Api.getSelect);
     if (res) store.dispatch(setSelectList([
-        {id: 0, name: translate('enum.Select')},
+        {id: '', name: translate('enum.Select')},
         ...res
     ]));
 }

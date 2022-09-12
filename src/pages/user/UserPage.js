@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Page} from "components/ui";
-import {translate} from "utils/helpers";
+import {can, translate} from "utils/helpers";
 import {serviceUserSetModal} from "services/user.service";
 import UserFilter from "pages/user/components/UserFilter";
 import UserTable from "pages/user/components/UserTable";
@@ -10,25 +10,29 @@ import {useUserStore} from "store/module/user.store";
 
 function UserPage(props) {
 
-    const {visibleFormModal} = useUserStore();
+    const {visibleFormModal, permission} = useUserStore();
 
     return (
         <Page
             action={
-                <Button
-                    className="btn btn--primary"
-                    onClick={() => serviceUserSetModal('form',true)}
-                    icon={<FiPlus/>}
-                    type={'button'}
-                >
-                    {translate('button.Add')}
-                </Button>
+                <>
+                    {can(permission + '.create') && (
+                        <Button
+                            className="btn btn--primary"
+                            onClick={() => serviceUserSetModal('form', true)}
+                            icon={<FiPlus/>}
+                            type={'button'}
+                        >
+                            {translate('button.Add')}
+                        </Button>
+                    )}
+                </>
             }
         >
             <div className="space-y-5">
                 <UserFilter/>
                 <UserTable/>
-                {visibleFormModal && <UserFormModal/>}
+                {(visibleFormModal && (can(permission + '.create') || can(permission + '.update'))) && <UserFormModal/>}
             </div>
         </Page>
     );

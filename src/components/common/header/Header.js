@@ -18,7 +18,7 @@ function Header(props) {
     return (
         <>
             <div className="lg:flex hidden items-center bg-white dark-bg-secondary dark:border-b dark-border">
-                <div className="container mx-auto flex items-center justify-between ">
+                <div className="page-container flex items-center justify-between ">
                     <div className="flex">
                         <NavLink to={route('app.index')} className="h-[40px] inline-flex">
                             <img src={logo} alt={""} className="w-full h-full object-contain"/>
@@ -34,14 +34,14 @@ function Header(props) {
                 </div>
             </div>
 
-            <div className="lg:hidden p-2 border-b flex items-center justify-between border-gray-200 dark-border">
-                <div className="flex items-center space-x-3">
+            <div className="lg:hidden p-2 border-b flex items-center justify-between bg-white dark-bg-secondary dark:border-b dark-border">
+                <div className="flex items-center space-x-3 w-10">
                     <button onClick={() => serviceAppMobileMenuOpen(true)} className="w-10 h-10 flex items-center justify-center text-2xl">
                         <FiMenu/>
                     </button>
-                    <div className="flex items-center">
-                        <NavLink to={'/'} className="h-[25px] inline-flex shrink-0">
-                            <img src={logo} alt={""} className="w-full h-full object-contain"/>
+                    <div className="flex items-center w-40">
+                        <NavLink to={'/'} className="h-[25px] w-40 inline-flex shrink-0">
+                            <img src={logo} alt={""} className="h-full object-contain"/>
                         </NavLink>
                     </div>
                 </div>

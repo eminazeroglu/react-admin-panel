@@ -8,13 +8,15 @@ const initialQuery = {
 
 const initialState = {
     translateKey: 'crm.Permission',
+    permission: 'permission',
     query: initialQuery,
     loading: false,
     dataSource: {},
     permissions: [],
     tableRow: {},
     item: {},
-    visibleFormModal: false
+    visibleFormModal: false,
+    visibleOptionModal: false,
 }
 
 const PermissionStore = createSlice({
@@ -36,6 +38,9 @@ const PermissionStore = createSlice({
         setVisibleFormModal: (state, action) => {
             state.visibleFormModal = action.payload;
         },
+        setVisibleOptionModal: (state, action) => {
+            state.visibleOptionModal = action.payload;
+        },
         setSelectList: (state, action) => {
             state.permissions = action.payload;
         },
@@ -52,7 +57,8 @@ export const {
     setVisibleFormModal,
     setTableRow,
     setSelectList,
-    setItem
+    setItem,
+    setVisibleOptionModal
 } = PermissionStore.actions;
 
 export const usePermissionStore = () => useSelector(state => state.permissionStore)

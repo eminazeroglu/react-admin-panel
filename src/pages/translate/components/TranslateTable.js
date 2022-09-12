@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslateStore} from "store/module/translate.store";
-import {translate} from "utils/helpers";
+import {can, translate} from "utils/helpers";
 import {
     serviceTranslateFetchIndex,
     serviceTranslateSetModal,
     serviceTranslateSetQuery
 } from "services/translate.service";
-import {Card, Table} from "components/ui";
+import {Table} from "components/ui";
 import {useLanguageStore} from "store/module/language.store";
 import {serviceLanguageSelectList} from "services/language.service";
 import {MdTranslate} from "@react-icons/all-files/md/MdTranslate";
 
 function TranslateTable(props) {
-    const {query, dataSource, loading} = useTranslateStore();
+    const {query, dataSource, loading, permission} = useTranslateStore();
     const [columns, setColumns] = useState([]);
     const {languages} = useLanguageStore();
 
@@ -23,7 +23,6 @@ function TranslateTable(props) {
                 title: i.name,
                 dataIndex: i.code,
                 key: i.id,
-                width: 300,
                 render: (value, item) => {
                     return translate(item[i.code], {lang: i.code})
                 }
@@ -38,9 +37,13 @@ function TranslateTable(props) {
 
     const actionRender = (row) => {
         return (
-            <button className="btn btn--primary btn--action" onClick={e => serviceTranslateSetModal('form', true, row)}>
-                <MdTranslate/>
-            </button>
+            <>
+                {(can(permission + '.create') || can(permission + '.update')) && (
+                    <button className="btn btn--primary btn--action" onClick={e => serviceTranslateSetModal('form', true, row)}>
+                        <MdTranslate/>
+                    </button>
+                )}
+            </>
         )
     }
 
@@ -67,6 +70,8 @@ function TranslateTable(props) {
             sortingStart={1}
             actionWidth={40}
             actionFixed={'right'}
+            headerFixed={true}
+            scrollX={true}
             actionButton={row => actionRender(row)}
             scroll={{x: 'max-content'}}
         />
