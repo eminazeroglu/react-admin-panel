@@ -6,7 +6,7 @@ import {
     serviceMenuDestroy,
     serviceMenuFetchIndex,
     serviceMenuSetQuery,
-    serviceMenuSetVisibleFormModal, serviceMenuSetVisibleWidgetModal,
+    serviceMenuSetVisibleFormModal,
     serviceMenuUpdateAction
 } from "services/menu.service";
 import {Badge, Dropdown} from "antd";
@@ -72,14 +72,6 @@ function MenuTable(props) {
                                 onClick={() => serviceMenuUpdateAction(row.id)}
                             >
                                 {row.is_active ? translate('button.DeActivate') : translate('button.Activate')}
-                            </button>
-                        )}
-                        {(can(permission + '.create') || can(permission + '.update')) && (
-                            <button
-                                className="dropdown-item h-8"
-                                onClick={() => serviceMenuSetVisibleWidgetModal(true, row)}
-                            >
-                                {translate('crm.Menu.Label.Widgets')}
                             </button>
                         )}
                         {can(permission + '.delete') && (

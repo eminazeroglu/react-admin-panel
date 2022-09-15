@@ -5,7 +5,7 @@
 @layer base {
     html, body, #root {
         font-family: 'Nunito', sans-serif;
-        @apply h-full overflow-hidden dark:text-white dark:bg-gray-900
+        @apply h-full overflow-hidden bg-[#EAEDED] dark:text-white dark:bg-gray-900
     }
 
     h1 {

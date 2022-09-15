@@ -128,7 +128,7 @@ export default function Table({
                 <AntdTable
                     locale={datatableTranslate}
                     bordered
-                    className={'ui-table'}
+                    className={`ui-table ${(!isMobile && headerFixed) ? 'ui-table-fixed' : ''}`}
                     columns={tableColumns}
                     dataSource={dataSource}
                     size={'small'}

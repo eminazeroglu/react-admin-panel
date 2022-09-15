@@ -8,8 +8,11 @@ function FormSelect(
         value,
         type,
         bordered = false,
+        ajaxSearch = false,
         defaultValue,
         onChange,
+        onSearch,
+        onClear,
         options = [],
         fieldNames = {label: 'name', value: 'id'},
         filterKey = 'name',
@@ -25,8 +28,10 @@ function FormSelect(
             defaultValue={defaultValue}
             onChange={onChange}
             value={value}
+            onSearch={onSearch}
+            onClear={onClear}
             fieldNames={fieldNames}
-            filterOption={(input, option) => option[filterKey].toLowerCase().includes(input.toLowerCase())}
+            filterOption={(!ajaxSearch && !onSearch) ? (input, option) => option[filterKey].toLowerCase().includes(input.toLowerCase()) : false}
             options={options}
             {...props}
         />

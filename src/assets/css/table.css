@@ -69,8 +69,8 @@
     overflow-wrap: initial !important;
 }
 
-.ui-table .ant-table-thead > tr > th.ant-table-cell:not(.ant-table-selection-column):not(.td-action),
-.ui-table .ant-table-tbody > tr > td.ant-table-cell:not(.ant-table-selection-column):not(.td-action)
+.ui-table-fixed .ant-table-thead > tr > th.ant-table-cell:not(.ant-table-selection-column):not(.td-action),
+.ui-table-fixed .ant-table-tbody > tr > td.ant-table-cell:not(.ant-table-selection-column):not(.td-action)
 {
     @apply min-w-[100px]
 }

@@ -10,7 +10,7 @@ function AppLayout(props) {
             <Header/>
             <Navbar/>
             <div className="lg:h-[calc(100%_-_106px)] h-full overflow-y-auto pb-20">
-                <div className="container mx-auto">
+                <div className="page-container">
                     <Outlet/>
                 </div>
             </div>
