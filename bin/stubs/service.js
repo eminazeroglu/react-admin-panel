@@ -47,10 +47,10 @@ export const service$CLASS_NAME$Destroy = async (id) => {
     if (res) await service$CLASS_NAME$FetchIndex();
 }
 
-export const service$CLASS_NAME$SelectList = async () => {
-    const res = await api('get', Api.getSelect);
+export const service$CLASS_NAME$SelectList = async (params = {}) => {
+    const res = await api('get', Api.getSelect, {params});
     if (res) store.dispatch(setSelectList([
-        {id: 0, name: translate('enum.Select')},
+        {id: '', name: translate('enum.Select')},
         ...res
     ]));
 }
