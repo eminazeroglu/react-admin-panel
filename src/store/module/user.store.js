@@ -12,7 +12,7 @@ const initialState = {
     query: initialQuery,
     loading: false,
     dataSource: {},
-    selectList: [],
+    users: [],
     tableRow: {},
     item: {},
     visibleFormModal: false
@@ -38,7 +38,7 @@ const UserStore = createSlice({
             state.visibleFormModal = action.payload;
         },
         setSelectList: (state, action) => {
-            state.selectList = action.payload;
+            state.users = action.payload;
         },
         setItem: (state, action) => {
             state.item = action.payload;

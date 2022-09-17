@@ -50,7 +50,7 @@ export const serviceUserDestroy = async (id) => {
 export const serviceUserSelectList = async () => {
     const res = await api('get', Api.getSelect);
     if (res) store.dispatch(setSelectList([
-        {id: 0, name: translate('enum.Select')},
+        {id: '', fullname: translate('enum.Select')},
         ...res
     ]));
 }
