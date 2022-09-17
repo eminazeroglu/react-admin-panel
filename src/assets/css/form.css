@@ -76,12 +76,6 @@
     @apply text-red-500 text-sm dark:text-red-400
 }
 
-[class^=ant-]:not(.dropdown), [class*=" ant-"]:not(.dropdown) {
-    @apply
-    focus:!outline-none focus:!shadow-none focus:!border-none
-    active:!outline-none active:!shadow-none active:!border-none
-}
-
 .form-group .ant-input,
 .form-group .ant-select-selector,
 .form-group .ant-input-number,
