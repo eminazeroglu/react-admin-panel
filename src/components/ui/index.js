@@ -13,4 +13,6 @@ export {default as Upload} from './upload/Upload'
 export {default as PhoneInput} from './phone-input/PhoneInput'
 export {default as Route} from './route/Route'
 export {default as Table} from './table/Table'
+export {default as Calendar} from './calendar/Calendar'
+export {default as Statistic} from './statistic/Statistic'
 

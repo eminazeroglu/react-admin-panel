@@ -1,0 +1,32 @@
+.fc-theme-standard td, .fc-theme-standard th, .fc-theme-standard .fc-scrollgrid {
+    @apply border-color
+}
+
+.fc .fc-cell-shaded, .fc .fc-day-disabled {
+    @apply dark:!bg-gray-900
+}
+
+.fc .fc-daygrid-day.fc-day-today,
+.fc .fc-timegrid-col.fc-day-today{
+    @apply dark:!bg-gray-700 !bg-gray-100
+}
+
+.fc-view-harness {
+    @apply dark:bg-gray-800 p-4 dark:!border-gray-700 bg-white border border-color
+}
+
+.fc-button-group button {
+    @apply !bg-primary-800 dark:!bg-gray-800 focus:!outline-0 focus:!shadow-none active:!outline-0 active:!shadow-none
+}
+
+.fc-button-group button.fc-button-active {
+    @apply !bg-primary dark:!bg-secondary dark:!text-gray-900
+}
+
+.fc .fc-button-primary {
+    @apply !border-primary-700 dark:!border-gray-700
+}
+
+.fc .fc-button-primary:disabled {
+    @apply !bg-gray-700
+}
