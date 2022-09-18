@@ -15,4 +15,6 @@ export {default as Route} from './route/Route'
 export {default as Table} from './table/Table'
 export {default as Calendar} from './calendar/Calendar'
 export {default as Statistic} from './statistic/Statistic'
+export {default as Chart} from './chart/Chart'
+export {default as BrowserStats} from './browser-stats/BrowserStats'
 
