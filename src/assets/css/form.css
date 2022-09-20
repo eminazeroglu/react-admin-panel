@@ -408,3 +408,18 @@
 .form-color__text {
     @apply ml-4
 }
+
+.ant-upload-list-picture-card .ant-upload-list-item,
+.ant-upload.ant-upload-select-picture-card {
+    @apply w-24 h-24
+}
+.ant-upload-list {
+    @apply -mr-[16px]
+}
+
+.ant-upload.ant-upload-select-picture-card {
+    @apply dark:bg-gray-700 dark:border-gray-600 dark:text-white
+}
+.ant-upload.ant-upload-select-picture-card * {
+    @apply dark:text-white
+}

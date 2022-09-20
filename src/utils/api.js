@@ -16,7 +16,7 @@ const service = () => {
         serviceAppSetError({});
         serviceAppSetLoading(false);
 
-        if (res.config.method !== 'get' && res.status === 200 && !res?.config?.url?.includes('auth')) {
+        if (res.config.method !== 'get' && res.status === 200 && !res?.config?.url?.includes('auth') && !res?.config?.url?.includes('file')) {
             notification({
                 message: translate('notification.ActionSuccess')
             })

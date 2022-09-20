@@ -13,3 +13,10 @@
 .ant-modal-body {
     @apply p-4
 }
+
+.ant-modal-close {
+    @apply top-0
+}
+.ant-modal-title {
+    @apply min-h-[2rem]
+}

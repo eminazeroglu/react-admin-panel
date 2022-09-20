@@ -124,7 +124,7 @@ export default function Table({
                     </div>
                 </div>
             </Card>
-            <div className={`${isMobile ? 'overflow-x-auto' : ''}`}>
+            <div className={`${(isMobile || !scrollX) ? 'overflow-x-auto' : ''}`}>
                 <AntdTable
                     locale={datatableTranslate}
                     bordered
