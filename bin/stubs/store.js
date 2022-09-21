@@ -8,6 +8,7 @@ const initialQuery = {
 
 const initialState = {
     translateKey: 'crm.$CLASS_NAME$',
+    permission: '$FILE_NAME$',
     query: initialQuery,
     loading: false,
     dataSource: {},
