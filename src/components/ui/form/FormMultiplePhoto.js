@@ -7,7 +7,7 @@ import {
     serviceFileManagementPhotoRemove,
     serviceFileManagementPhotoRemoveAll,
     serviceFileManagementPhotoUpload
-} from "services/file-management";
+} from "services/file-management.service";
 import {Modal} from "components/ui";
 import {translate} from "utils/helpers";
 import {FiPlus} from "@react-icons/all-files/fi/FiPlus";

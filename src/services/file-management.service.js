@@ -12,3 +12,7 @@ export const serviceFileManagementPhotoRemove = async (params) => {
 export const serviceFileManagementPhotoRemoveAll = async (params) => {
     return await api('post', Api.photoRemoveAll, params);
 }
+
+export const serviceFileManagementEditorPhotoUpload = async (params) => {
+    return await api('post', Api.photoEditorUpload, params);
+}
