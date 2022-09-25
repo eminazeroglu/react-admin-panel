@@ -18,5 +18,5 @@
     @apply top-0
 }
 .ant-modal-title {
-    @apply min-h-[2rem]
+    @apply min-h-[2rem] flex items-center
 }

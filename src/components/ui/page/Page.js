@@ -17,7 +17,7 @@ export default function Page({children, count, breadcrumbFirst, title, action}) 
             <div className="flex lg:justify-between flex-col lg:flex-row lg:items-center space-y-0">
                 <div className="flex-1">
                     <h2 className="font-bold text-xl dark-text-primary">{title || translate(currentPage?.title)} {count} </h2>
-                    <ul className="flex items-center py-3 space-x-2 font-semibold text-sm mb-3">
+                    <ul className="flex items-center py-3 space-x-2 font-semibold lg:text-sm mb-3 text-xs">
                         <li className="flex items-center space-x-2">
                             <NavLink to={homePage.path || '/'} className="link dark-link">{breadcrumbFirst || translate(homePage?.title)}</NavLink>
                             <span className="text-gray-300 dark-text-secondary">

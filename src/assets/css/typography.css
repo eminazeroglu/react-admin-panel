@@ -1,5 +1,5 @@
 .page-container {
-    @apply container mx-auto px-5
+    @apply container mx-auto md:px-5
 }
 .img-cover {
     @apply w-full h-full object-cover

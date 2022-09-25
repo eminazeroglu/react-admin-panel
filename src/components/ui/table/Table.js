@@ -10,6 +10,7 @@ export default function Table({
                                   dataSource,
                                   total,
                                   rowKey,
+                                  headerRightRender,
                                   loading,
                                   onChecked,
                                   tableQuery,
@@ -117,10 +118,11 @@ export default function Table({
                         </select>
                         <span>{translate('datatable.LengthMenu2')}</span>
                     </div>
-                    <div>
+                    <div className="lg:flex items-center lg:space-x-4 space-x-0 space-y-4 lg:space-y-0">
                         {total > 0 && (
                             <p className="font-semibold">{tableDataInfo}</p>
                         )}
+                        {headerRightRender && headerRightRender}
                     </div>
                 </div>
             </Card>
