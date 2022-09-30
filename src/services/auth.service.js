@@ -13,6 +13,12 @@ export const serviceAuthSetPermission = (permissions) => {
     dispatch(setPermission(permissions));
 }
 
+export const serviceLogoutAction = () => {
+    serviceAuthSetToken(false);
+    stores.dispatch(setUser({}));
+    stores.dispatch(setPermission([]));
+}
+
 export const serviceAuthLoginDispatch = async (params) => {
     try {
         const res = await api('post', AuthApi.postAuthLogin, params);
@@ -29,7 +35,7 @@ export const serviceAuthLogoutFetch = async () => {
     try {
         const res = await api('get', AuthApi.getAuthLogout);
         if (res) {
-            serviceAuthSetToken(false);
+            serviceLogoutAction()
         }
     }
     catch (e) {

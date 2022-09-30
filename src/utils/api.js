@@ -1,7 +1,7 @@
 import axios from "axios";
 import stores from 'store'
 import {serviceAppSetError, serviceAppSetLoading} from "services/app.service";
-import {serviceAuthSetToken} from "services/auth.service";
+import {serviceLogoutAction} from "services/auth.service";
 import {dialog, notification, translate} from "utils/helpers";
 
 const service = () => {
@@ -39,7 +39,7 @@ const service = () => {
                 });
             }
         } else if (error.status === 401) {
-            serviceAuthSetToken('');
+            serviceLogoutAction();
         } else if (error.status !== 404) {
             notification({
                 type: 'error',

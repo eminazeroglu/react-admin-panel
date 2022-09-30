@@ -1,7 +1,7 @@
 import {Navigate} from "react-router-dom";
 import AuthProvider from "provider/AuthProvider";
 import AuthLayout from "layouts/AuthLayout";
-import AppLayout from "layouts/AppLayout";
+import PermissionLayout from "layouts/PermissionLayout";
 import HomePage from "pages/home/HomePage";
 import LoginPage from "pages/auth/LoginPage";
 import ForgetPasswordPage from "pages/auth/ForgetPasswordPage";
@@ -18,7 +18,7 @@ const routers = [
     {
         name: 'app',
         path: '/',
-        element: <AppLayout/>,
+        element: <PermissionLayout/>,
         auth: true,
         permission: 'accept',
         children: [
