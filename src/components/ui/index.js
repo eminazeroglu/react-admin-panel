@@ -17,4 +17,5 @@ export {default as Calendar} from './calendar/Calendar'
 export {default as Statistic} from './statistic/Statistic'
 export {default as Chart} from './chart/Chart'
 export {default as BrowserStats} from './browser-stats/BrowserStats'
+export {default as GoogleMap} from './google-map/GoogleMap'
 
