@@ -16,20 +16,25 @@ function $CLASS_NAME$Page(props) {
     return (
         <Page
             action={
-                <Button
-                    className="btn btn--primary"
-                    onClick={() => service$CLASS_NAME$SetModal('form', true)}
-                    icon={<FiPlus/>}
-                    type={'button'}
-                >
-                    {translate('button.Add')}
-                </Button>
+                <>
+                    {can(permission + '.create') && (
+                        <Button
+                            className="btn btn--primary"
+                            onClick={() => service$CLASS_NAME$SetModal('form', true)}
+                            icon={<FiPlus/>}
+                            type={'button'}
+                        >
+                            {translate('button.Add')}
+                        </Button>
+                    )}
+                </>
             }
         >
             <div className="space-y-5">
                 <$CLASS_NAME$Filter/>
                 <$CLASS_NAME$Table/>
-                {(visibleFormModal && (can(permission + '.create') || can(permission + '.update'))) &&  <$CLASS_NAME$FormModal/>}
+                {(visibleFormModal && (can(permission + '.create') || can(permission + '.update'))) &&
+                    <$CLASS_NAME$FormModal/>}
             </div>
         </Page>
     );
