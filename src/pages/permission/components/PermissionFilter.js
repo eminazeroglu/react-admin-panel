@@ -49,7 +49,7 @@ function PermissionFilter(props) {
                 </div>
                 <div className="filter-box-buttons lg:pt-[25px]">
                     <Button
-                        disabled={!Object.keys(filter).filter(i => filter[i]).length}
+                        disabled={!Object.keys(filter).filter(i => filter[i].toString().trim()).length}
                         onClick={() => handleFilter()}
                         className="filter-box-button"
                         icon={<FiFilter/>}
