@@ -13,6 +13,7 @@ function MenuFormModal(props) {
     const {languages} = useAppState();
     const {visibleFormModal, tableRow, selectList, translateKey} = useMenuStore();
     const [loading, setLoading] = useState(false)
+    const [ready, setReady] = useState(false)
 
     const [form, setForm] = useState({});
     const [parents, setParents] = useState([]);
@@ -36,6 +37,7 @@ function MenuFormModal(props) {
             type: item.type || '',
             translates,
         };
+        setReady(true);
         setForm({...customForm});
     }
 
@@ -81,7 +83,7 @@ function MenuFormModal(props) {
             onClose={() => serviceMenuSetVisibleFormModal(false)}
             className="w-full lg:!w-96"
         >
-            {visibleFormModal && (
+            {(ready && form.translates) && (
                 <form onSubmit={handlerSubmit}>
                     <Row gutter={[16, 16]}>
                         <Col span={24}>

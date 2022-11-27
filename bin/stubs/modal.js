@@ -58,7 +58,7 @@ function $CLASS_NAME$FormModal(props) {
             onClose={() => handleClose()}
             className="w-full"
         >
-            {ready && (
+            {(ready && form.translates) && (
                 <form onSubmit={handleSubmit}>
                     <Row gutter={[16, 16]}>
 

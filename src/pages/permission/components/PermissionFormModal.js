@@ -56,7 +56,7 @@ function PermissionFormModal(props) {
             onClose={() => handleClose()}
             className="w-full"
         >
-            {ready && (
+            {(ready && form.translates) && (
                 <form onSubmit={handleSubmit}>
                     <Row gutter={[16, 16]}>
                         {languages.length > 0 && languages.map((i, index) => (
