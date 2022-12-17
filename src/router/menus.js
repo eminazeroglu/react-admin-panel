@@ -11,49 +11,41 @@ export default [
     {
         title: translateKey + 'HomePage',
         icon: <FiHome/>,
-        route: 'app.index',
-        permission: 'accept'
+        route: 'app.index'
     },
     {
         title: translateKey + 'Menus',
         icon: <BsReverseLayoutTextWindowReverse/>,
-        route: 'app.menu',
-        permission: 'accept'
+        route: 'app.menu'
     },
     {
         title: translateKey + 'Users',
         icon: <FiUsers/>,
-        route: 'app.user',
-        permission: 'accept'
+        route: 'app.user'
     },
     {
         title: translateKey + 'Languages',
         icon: <IoLanguage/>,
-        route: 'app.language',
-        permission: 'accept'
+        route: 'app.language'
     },
     {
         title: translateKey + 'Translates',
         icon: <MdGTranslate/>,
-        route: 'app.translate',
-        permission: 'accept'
+        route: 'app.translate'
     },
     {
         title: translateKey + 'Permissions',
         icon: <FiKey/>,
         route: 'app.permission',
-        permission: 'accept',
     },
     {
         title: translateKey + 'SeoMetaTag',
         icon: <FiCode/>,
-        route: 'app.seo',
-        permission: 'accept',
+        route: 'app.seo'
     },
     {
         title: translateKey + 'Setting',
         icon: <FiHome/>,
-        route: 'app.setting',
-        permission: 'accept',
+        route: 'app.setting'
     }
 ]

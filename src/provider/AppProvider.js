@@ -6,6 +6,7 @@ import {useAppState} from "store/module/app.store";
 import {serviceAppCheckTheme, serviceAppFetchStart, serviceAppSetCurrentPage} from "services/app.service";
 import {useAuthState} from "store/module/auth.store";
 import {serviceAuthFetchCheckToken} from "services/auth.service";
+import {Loading} from "components/ui";
 
 function AppProvider({children}) {
     const {token} = useAuthState();
@@ -38,7 +39,11 @@ function AppProvider({children}) {
 
     if (applicationShow)
         return children;
-    return false
+    return (
+        <div className="w-screen h-screen flex items-center justify-center">
+            <Loading loading={true} fontSize={40} />
+        </div>
+    )
 }
 
 export default AppProvider;
