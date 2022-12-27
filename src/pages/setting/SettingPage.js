@@ -22,23 +22,34 @@ function SettingPage(props) {
                         <Tabs
                             className="custom-tab"
                             tabPosition={`${!isMobile ? 'left' : ''}`}
-                        >
-                            <TabPane tab={translate('crm.Sidebar.Main')} key={'general'}>
-                                <SettingMain/>
-                            </TabPane>
-                            <TabPane tab={translate('crm.Sidebar.WorkTime')} key={'work-time'}>
-                                <SettingWorkTime/>
-                            </TabPane>
-                            <TabPane tab={translate('crm.Sidebar.Logo')} key={'logo'}>
-                                <SettingLogo/>
-                            </TabPane>
-                            <TabPane tab={translate('crm.Sidebar.Html')} key={'html'}>
-                                <SettingHtml/>
-                            </TabPane>
-                            <TabPane tab={translate('crm.Sidebar.SocialPage')} key={'social-page'}>
-                                <SettingSocialPage/>
-                            </TabPane>
-                        </Tabs>
+                            items={[
+                                {
+                                    label: translate('crm.Sidebar.Main'),
+                                    key: 'general',
+                                    children: <SettingMain/>
+                                },
+                                {
+                                    label: translate('crm.Sidebar.WorkTime'),
+                                    key: 'work-time',
+                                    children: <SettingWorkTime/>
+                                },
+                                {
+                                    label: translate('crm.Sidebar.Logo'),
+                                    key: 'logo',
+                                    children: <SettingLogo/>
+                                },
+                                {
+                                    label: translate('crm.Sidebar.Html'),
+                                    key: 'html',
+                                    children: <SettingHtml/>
+                                },
+                                {
+                                    label: translate('crm.Sidebar.SocialPage'),
+                                    key: 'social-page',
+                                    children: <SettingSocialPage/>
+                                },
+                            ]}
+                        />
                     </>
                 )}
             </div>
