@@ -10,16 +10,17 @@ function Navbar(props) {
     const {pathname} = useLocation();
     const routerArr = flatten(routers);
     const menuMap = menus => menus.map(menu => {
-        const item = routerArr.find(i => (i.path === route(menu.route) || i.path === route(menu.route).slice(1)));
+        const newMenu = Object.assign({}, menu);
+        const item = routerArr.find(i => (i.path === route(newMenu.route) || i.path === route(newMenu.route).slice(1)));
 
-        menu.access = (item === 'accept' || can(item.permission)) || false;
+        newMenu.access = (item === 'accept' || can(item?.permission)) || false;
 
-        if (menu?.children) {
-            menu.children = menuMap(menu.children);
-            if (!menu.children.find(i => i.access)) menu.access = false;
+        if (newMenu?.children) {
+            newMenu.children = menuMap(newMenu.children);
+            if (!newMenu.children.find(i => i.access)) newMenu.access = false;
         }
 
-        return menu;
+        return newMenu;
     })
 
     const customMenus = menuMap(menus).filter(i => i.access)
