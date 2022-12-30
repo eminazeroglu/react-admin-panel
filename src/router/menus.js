@@ -24,28 +24,34 @@ export default [
         route: 'app.user'
     },
     {
-        title: translateKey + 'Languages',
-        icon: <IoLanguage/>,
-        route: 'app.language'
-    },
-    {
-        title: translateKey + 'Translates',
-        icon: <MdGTranslate/>,
-        route: 'app.translate'
-    },
-    {
-        title: translateKey + 'Permissions',
-        icon: <FiKey/>,
-        route: 'app.permission',
-    },
-    {
-        title: translateKey + 'SeoMetaTag',
-        icon: <FiCode/>,
-        route: 'app.seo'
-    },
-    {
         title: translateKey + 'Setting',
         icon: <FiHome/>,
-        route: 'app.setting'
+        route: 'app.otherSetting',
+        children: [
+            {
+                title: translateKey + 'Languages',
+                icon: <IoLanguage/>,
+                route: 'app.language',
+                parent: 'app.otherSetting'
+            },
+            {
+                title: translateKey + 'Translates',
+                icon: <MdGTranslate/>,
+                route: 'app.translate',
+                parent: 'app.otherSetting'
+            },
+            {
+                title: translateKey + 'Permissions',
+                icon: <FiKey/>,
+                route: 'app.permission',
+                parent: 'app.otherSetting'
+            },
+            {
+                title: translateKey + 'SeoMetaTag',
+                icon: <FiCode/>,
+                route: 'app.seo',
+                parent: 'app.otherSetting'
+            },
+        ]
     }
 ]
