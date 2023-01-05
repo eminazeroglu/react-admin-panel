@@ -23,6 +23,7 @@ export default function Table({
                                   scrollX = false,
                                   selected,
                                   headerFixed = false,
+                                  sm = false,
                                   sortingStart,
                                   limitPages = [10, 25, 50, 100, 500, 1000],
                                   ...props
@@ -130,7 +131,7 @@ export default function Table({
                 <AntdTable
                     locale={datatableTranslate}
                     bordered
-                    className={`ui-table ${(!isMobile && headerFixed) ? 'ui-table-fixed' : ''}`}
+                    className={`ui-table ${(!isMobile && headerFixed) ? 'ui-table-fixed' : ''} ${sm ? 'ui-table-sm' : ''}`}
                     columns={tableColumns}
                     dataSource={dataSource}
                     size={'small'}

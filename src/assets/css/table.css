@@ -79,3 +79,8 @@
 .ui-table .ant-spin-container::after {
     @apply hidden
 }
+
+.ui-table-sm .ant-table-thead > tr > th,
+.ui-table-sm .ant-table-tbody > tr.ant-table-row > td {
+    @apply !text-[11px] !p-0.5
+}

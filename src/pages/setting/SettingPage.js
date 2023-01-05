@@ -21,7 +21,7 @@ function SettingPage(props) {
                     <>
                         <Tabs
                             className="custom-tab"
-                            tabPosition={`${!isMobile ? 'left' : ''}`}
+                            tabPosition={`${!isMobile ? 'left' : 'top'}`}
                             items={[
                                 {
                                     label: translate('crm.Sidebar.Main'),

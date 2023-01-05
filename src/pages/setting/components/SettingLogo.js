@@ -59,7 +59,7 @@ function SettingLogo() {
         <Card className={'lg:w-[800px]'} title={translate('crm.Sidebar.Logo')}>
             <form onSubmit={handleSubmit}>
                 <Row gutter={[16, 16]}>
-                    <Col span={6}>
+                    <Col lg={6} xs={24}>
                         <FormGroup
                             label={translate(translateKey + '.Label.Logo')}
                             elementClass={'!h-auto'}
@@ -72,7 +72,7 @@ function SettingLogo() {
                         </FormGroup>
                     </Col>
 
-                    <Col span={6}>
+                    <Col lg={6} xs={24}>
                         <FormGroup
                             label={translate(translateKey + '.Label.FooterLogo')}
                             elementClass={'!h-auto'}
@@ -85,7 +85,7 @@ function SettingLogo() {
                         </FormGroup>
                     </Col>
 
-                    <Col span={6}>
+                    <Col lg={6} xs={24}>
                         <FormGroup
                             label={translate(translateKey + '.Label.MobileLogo')}
                             elementClass={'!h-auto'}
@@ -98,7 +98,7 @@ function SettingLogo() {
                         </FormGroup>
                     </Col>
 
-                    <Col span={6}>
+                    <Col lg={6} xs={24}>
                         <FormGroup
                             label={translate(translateKey + '.Label.Favicon')}
                             elementClass={'!h-auto'}
@@ -111,7 +111,7 @@ function SettingLogo() {
                         </FormGroup>
                     </Col>
 
-                    <Col span={6}>
+                    <Col lg={6} xs={24}>
                         <FormGroup
                             label={translate(translateKey + '.Label.AdminLogin')}
                             elementClass={'!h-auto'}
@@ -124,7 +124,7 @@ function SettingLogo() {
                         </FormGroup>
                     </Col>
 
-                    <Col span={6}>
+                    <Col lg={6} xs={24}>
                         <FormGroup
                             label={translate(translateKey + '.Label.AdminMain')}
                             elementClass={'!h-auto'}
@@ -137,7 +137,7 @@ function SettingLogo() {
                         </FormGroup>
                     </Col>
 
-                    <Col span={12}>
+                    <Col lg={12} xs={24}>
                         <FormGroup
                             label={translate(translateKey + '.Label.Wallpaper')}
                             elementClass={'!h-auto'}

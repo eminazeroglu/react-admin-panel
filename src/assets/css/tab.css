@@ -38,13 +38,30 @@
     @apply bg-primary
 }
 
+.custom-tab.ant-tabs-top .ant-tabs-ink-bar {
+    @apply hidden
+}
+
 .custom-tab .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab, .ant-tabs-right > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab,
 .custom-tab .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab, .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
     @apply m-0
 }
 
 .custom-tab .ant-tabs-nav-list {
-    @apply min-w-[180px]
+    @apply min-w-[180px] flex-col lg:flex-row
+}
+
+.custom-tab.ant-tabs-top .ant-tabs-tab + .ant-tabs-tab {
+    @apply ml-0
+}
+
+.custom-tab.ant-tabs-top .ant-tabs-nav-list {
+    @apply min-w-full
+}
+
+.custom-tab.ant-tabs-top .ant-tabs-nav-list .ant-tabs-tab {
+    border-bottom: 1px solid transparent;
+    @apply !border-b border-color
 }
 
 .custom-tab.custom-tab--column .ant-tabs-nav-list {
