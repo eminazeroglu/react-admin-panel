@@ -385,3 +385,47 @@
 .ant-input-show-count-suffix {
     @apply dark:text-white
 }
+
+.ant-picker-content th, .ant-picker-content td {
+    @apply text-xs !w-5
+}
+
+.ant-alert-error {
+    @apply dark:bg-[#f8a092] dark:border-none
+}
+.ant-alert-error .ant-alert-message {
+    @apply dark:text-red-800
+}
+
+.ant-modal-close {
+    @apply top-0
+}
+
+.ant-picker-datetime-panel .ant-picker-time-panel,
+.ant-picker-time-panel-column:not(:first-child) {
+    @apply dark:border-darkBorder
+}
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner {
+    @apply dark:text-gray-200 text-xs flex items-center justify-center w-full !pl-0
+}
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+    @apply dark:bg-gray-800
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner:hover {
+    @apply dark:bg-gray-600
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner,
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+    @apply dark:bg-secondary dark:text-gray-900
+}
+
+.ant-picker-ranges .ant-picker-ok .ant-btn-primary {
+    @apply dark:bg-secondary dark:border-none dark:text-gray-900 dark:drop-shadow-none !text-xs px-8 py-2 h-auto
+}
+.ant-picker-ranges .ant-picker-now .ant-picker-now-btn {
+    @apply dark:text-gray-200
+}

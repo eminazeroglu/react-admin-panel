@@ -11,6 +11,7 @@ function FormRangePicker(
         showCount,
         onChange,
         format,
+        time = false,
         ...props
     }
 ) {
@@ -25,6 +26,7 @@ function FormRangePicker(
             onChange={onChange}
             value={value}
             format={format}
+            showTime={time}
             {...props}
         />
     );
