@@ -227,3 +227,10 @@ export const addCommas = (nStr) => {
     }
     return x1 + x2;
 }
+
+export const onlyNumberWrite = (value, callback) => {
+    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+    if ((!Number.isNaN(value) && reg.test(value)) || value === '') {
+        return callback(value);
+    }
+}
